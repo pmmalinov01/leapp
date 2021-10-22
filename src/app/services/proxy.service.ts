@@ -64,8 +64,20 @@ export class ProxyService {
     return options;
   }
 
-  get(url: string, resCallback: (res: any) => any, errCallback: (err: any) => any): void {
-    const options = this.getHttpClientOptions(url);
-    this.appService.getFollowRedirects().https.get(options, (res) => resCallback(res)).on('error', (err) => errCallback(err)).end();
+  get(url: string, resCallback: (res: any) => any, errCallback: (err: any) => any, options?: any): void {
+    let opts = this.getHttpClientOptions(url);
+    if(options) {
+      opts = Object.assign(options, opts);
+    }
+    this.appService.getFollowRedirects().https.get(opts, (res) => {
+      let body = '';
+      res.on('data', (chunk) => {
+        body += chunk;
+      });
+      res.on('end', () =>{
+        console.log(body);
+        resCallback(body.toString());
+      });
+    }).on('error', (err) => errCallback(err)).end();
   }
 }

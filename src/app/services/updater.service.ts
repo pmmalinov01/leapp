@@ -9,6 +9,7 @@ import {WorkspaceService} from './workspace.service';
 import {HttpClient} from '@angular/common/http';
 import md from 'markdown-it';
 import {ElectronService} from './electron.service';
+import {ProxyService} from './proxy.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class UpdaterService {
     private workspaceService: WorkspaceService,
     private bsModalService: BsModalService,
     private httpClient: HttpClient,
-    private electronService: ElectronService
+    private electronService: ElectronService,
+    private proxyService: ProxyService
   ) {
     this.markdown = md();
   }
@@ -92,12 +94,18 @@ export class UpdaterService {
 
   async getReleaseNote(): Promise<string> {
     return new Promise( (resolve, _) => {
-        this.httpClient.get('https://asset.noovolari.com/CHANGELOG.md', { responseType: 'text' }).subscribe(data => {
-          resolve(this.markdown.render(data));
-        }, error => {
-          console.log('error', error);
-          resolve('');
-        });
+
+      this.proxyService.get('https://asset.noovolari.com/CHANGELOG.md', (data) => {
+        console.log(data);
+        resolve(this.markdown.render(data));
+      }, (error) => {
+        console.log('error', error);
+        resolve('');
+      }, { responseType: 'text' });
+
+      /*
+      this.httpClient.get('https://asset.noovolari.com/CHANGELOG.md', ).subscribe(data => {}, error => {});
+      */
     });
   }
 

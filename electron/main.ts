@@ -1,9 +1,14 @@
 import * as path from 'path';
 import {environment} from '../src/environments/environment';
+import * as fs from "fs";
+import {machineIdSync} from 'node-machine-id';
+import * as os from "os";
 
 const {app, BrowserWindow, globalShortcut, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
+
+const CryptoJS = require('crypto-js');
 const url = require('url');
 const ipc = ipcMain;
 
@@ -40,27 +45,35 @@ if(process.platform !== 'win32') {
 }
 
 const buildAutoUpdater = (win: any): void => {
-  autoUpdater.allowDowngrade = false;
-  autoUpdater.allowPrerelease = false;
-  autoUpdater.autoDownload = false;
+  try {
+    autoUpdater.allowDowngrade = false;
+    autoUpdater.allowPrerelease = false;
+    autoUpdater.autoDownload = false;
 
-  const minutes = 10;
+    setAutoUpdaterProxy();
 
-  const data = {
-    provider: 'generic',
-    url: 'https://asset.noovolari.com/latest',
-    channel: 'latest',
-  };
-  autoUpdater.setFeedURL(data);
+    const minutes = 1/6;
 
-  autoUpdater.checkForUpdates().then(_ => {});
-  setInterval(() => {
+    const data = {
+      provider: 'generic',
+      url: 'https://asset.noovolari.com/latest',
+      channel: 'latest',
+    };
+    autoUpdater.setFeedURL(data);
+
+
+
     autoUpdater.checkForUpdates().then(_ => {});
-  }, 1000 * 60 * minutes);
+    setInterval(() => {
+      autoUpdater.checkForUpdates().then(_ => {});
+    }, 1000 * 60 * minutes);
+    autoUpdater.on('update-available', (info) => {
+      win.webContents.send('UPDATE_AVAILABLE', info);
+    });
+  } catch(err) {
+    console.log('cannot connect to autoupdater service');
+  }
 
-  autoUpdater.on('update-available', (info) => {
-    win.webContents.send('UPDATE_AVAILABLE', info);
-  });
 };
 
 // Generate the main Electron window
@@ -149,6 +162,42 @@ const generateMainWindow = () => {
     });
   }
 };
+
+const setAutoUpdaterProxy = () => {
+  const path = os.homedir() + '/' + environment.lockFileDestination;
+  const workspace = fs.existsSync(path) ? JSON.parse(CryptoJS.AES.decrypt(fs.readFileSync(path, {encoding: 'utf-8'}), machineIdSync()).toString(CryptoJS.enc.Utf8)) : undefined;
+  if(
+    workspace &&
+    workspace._proxyConfiguration &&
+    workspace._proxyConfiguration.proxyUrl &&
+    workspace._proxyConfiguration.proxyPort &&
+    workspace._proxyConfiguration.proxyProtocol
+  ) {
+    try {
+      autoUpdater.netSession.setProxy({
+        proxyRules: `${workspace._proxyConfiguration.proxyProtocol}://${workspace._proxyConfiguration.proxyUrl}:${workspace._proxyConfiguration.proxyPort}`,
+      });
+    } catch(err) {
+      console.log('cannot set proxy rule');
+    }
+  }
+  if(
+    workspace &&
+    workspace._proxyConfiguration &&
+    workspace._proxyConfiguration.username &&
+    workspace._proxyConfiguration.password
+  ) {
+    console.log(workspace._proxyConfiguration);
+    try {
+      autoUpdater.signals.login((_authInfo, callback) => {
+        console.log('');
+        callback(workspace._proxyConfiguration.username, workspace._proxyConfiguration.password);
+      });
+    } catch(err) {
+      console.log('cannot set proxy auth');
+    }
+  }
+}
 
 // =============================== //
 // Start the real application HERE //
