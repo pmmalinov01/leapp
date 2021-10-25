@@ -35,6 +35,7 @@ export class ElectronService {
   nativeTheme: any;
   notification: any;
   process: any;
+  proxyAgent: any;
 
   get isElectron(): boolean {
     return !!(window && window.process && (window.process as any).type);
@@ -60,6 +61,7 @@ export class ElectronService {
       this.keytar = window.require('keytar');
       this.followRedirects = window.require('follow-redirects');
       this.httpProxyAgent = window.require('http-proxy-agent');
+      this.proxyAgent = window.require('proxy-agent');
       this.httpsProxyAgent = window.require('https-proxy-agent');
       this.app = window.require('@electron/remote').app;
       this.session = window.require('@electron/remote').session;

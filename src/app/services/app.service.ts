@@ -562,4 +562,31 @@ export class AppService {
   toast(message: string, level: ToastLevel, title: string) {
     this.loggingService.toast(message, level, title);
   }
+
+  setAwsProxyData(workspace) {
+    let proxyUrl;
+    let proxyPort;
+    let proxyProtocol;
+    let proxyUsername;
+    let proxyPassword;
+
+    if (workspace && workspace.proxyConfiguration) {
+      proxyUrl = workspace.proxyConfiguration.proxyUrl;
+      proxyProtocol = workspace.proxyConfiguration.proxyProtocol;
+      proxyPort = workspace.proxyConfiguration.proxyPort;
+      proxyUsername = workspace.proxyConfiguration.username;
+      proxyPassword = workspace.proxyConfiguration.password;
+
+      let rule = `${proxyProtocol}://${proxyUrl}:${proxyPort}`;
+      if (proxyUsername !== undefined && proxyUsername !== null && proxyUrl !== '' &&
+        proxyPassword !== undefined && proxyPassword !== null && proxyPassword !== '') {
+        rule = `${proxyProtocol}://${proxyUsername}:${proxyPassword}@${proxyUrl}:${proxyPort}`;
+      }
+
+      console.log('iao', rule);
+
+      return { agent: new this.electronService.proxyAgent(rule) };
+    }
+    return {};
+  }
 }

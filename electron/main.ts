@@ -52,7 +52,7 @@ const buildAutoUpdater = (win: any): void => {
 
     setAutoUpdaterProxy();
 
-    const minutes = 1/6;
+    const minutes = 10;
 
     const data = {
       provider: 'generic',
@@ -187,10 +187,8 @@ const setAutoUpdaterProxy = () => {
     workspace._proxyConfiguration.username &&
     workspace._proxyConfiguration.password
   ) {
-    console.log(workspace._proxyConfiguration);
     try {
       autoUpdater.signals.login((_authInfo, callback) => {
-        console.log('');
         callback(workspace._proxyConfiguration.username, workspace._proxyConfiguration.password);
       });
     } catch(err) {

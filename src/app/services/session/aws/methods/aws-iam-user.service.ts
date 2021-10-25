@@ -102,7 +102,11 @@ export class AwsIamUserService extends AwsSessionService {
         const secretAccessKey = await this.getSecretKeyFromKeychain(sessionId);
         // Get session token
         // https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html
-        AWS.config.update({ accessKeyId, secretAccessKey });
+        AWS.config.update({
+          accessKeyId,
+          secretAccessKey,
+          httpOptions: this.appService.setAwsProxyData(this.workspaceService.get())
+        });
         // Configure sts client options
         const sts = new AWS.STS(this.appService.stsOptions(session));
         // Configure sts get-session-token api call params
@@ -130,7 +134,12 @@ export class AwsIamUserService extends AwsSessionService {
   async getAccountNumberFromCallerIdentity(session: Session): Promise<string> {
     // Get credentials
     const credentials: CredentialsInfo = await this.generateCredentials(session.sessionId);
-    AWS.config.update({ accessKeyId: credentials.sessionToken.aws_access_key_id, secretAccessKey: credentials.sessionToken.aws_secret_access_key, sessionToken: credentials.sessionToken.aws_session_token });
+    AWS.config.update({
+      accessKeyId: credentials.sessionToken.aws_access_key_id,
+      secretAccessKey: credentials.sessionToken.aws_secret_access_key,
+      sessionToken: credentials.sessionToken.aws_session_token,
+      httpOptions: this.appService.setAwsProxyData(this.workspaceService.get())
+    });
     // Configure sts client options
     try {
       const sts = new AWS.STS(this.appService.stsOptions(session));
