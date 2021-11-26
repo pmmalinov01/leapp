@@ -42,7 +42,9 @@ export class ElectronService {
 
   constructor() {
     if (this.isElectron) {
+      console.log('Inside electron service');
       this.log = window.require('electron-log');
+      console.log('status of log library', this.log);
       this.fs = window.require('fs-extra');
       this.rimraf = window.require('rimraf');
       this.os = window.require('os');
