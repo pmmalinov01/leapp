@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SessionLayoutComponent } from '../../layout/session-layout/session-layout.component';
 import { SessionComponent } from './session/session.component';
+import {MainLayoutComponent} from '../../layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: SessionLayoutComponent,
+    component: MainLayoutComponent,
     children: [
       {
         path: 'session-selected',

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {NoAppbarLayoutComponent} from '../layout/noappbar-layout/noappbar-layout.component';
 import {CreateAccountComponent} from './create-account/create-account.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import {StartScreenComponent} from './start-screen/start-screen.component';
+import {MainLayoutComponent} from '../layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: NoAppbarLayoutComponent, // Used as a layout for the sessions
+    component: MainLayoutComponent, // Used as a layout for the sessions
     children: [
       {
         path: 'create-account',

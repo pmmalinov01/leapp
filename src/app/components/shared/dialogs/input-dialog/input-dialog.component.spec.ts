@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {InputDialogComponent} from './input-dialog.component';
-import {mustInjected} from '../../../../base-injectables';
+import {mustInjected} from '../../../../../base-injectables';
 import {RouterTestingModule} from '@angular/router/testing';
 
 describe('InputDialogComponent', () => {
