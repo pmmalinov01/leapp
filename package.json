@@ -210,7 +210,6 @@
     "ngx-electron": "^2.2.0",
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-json-viewer": "~3.0.2",
-    "ngx-toastr": "~13.2.1",
     "node-log-rotate": "~0.1.5",
     "node-machine-id": "~1.1.12",
     "reflect-metadata": "^0.1.13",

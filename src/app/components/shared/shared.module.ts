@@ -15,10 +15,12 @@ import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SnackbarComponent } from './snackbar/snackbar.component';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
-  declarations: [ProfileComponent, ConfirmationDialogComponent, ProfileSidebarComponent, ProfilePageComponent, InputDialogComponent, UpdateDialogComponent],
-    imports: [CommonModule, TooltipModule.forRoot(), BsDropdownModule.forRoot(), ModalModule.forRoot(), ReactiveFormsModule, FormsModule, NgxJsonViewerModule, NgSelectModule, MatTabsModule, MatIconModule, MatCheckboxModule],
+  declarations: [ProfileComponent, ConfirmationDialogComponent, ProfileSidebarComponent, ProfilePageComponent, InputDialogComponent, UpdateDialogComponent, SnackbarComponent],
+    imports: [CommonModule, TooltipModule.forRoot(), BsDropdownModule.forRoot(), ModalModule.forRoot(), ReactiveFormsModule, FormsModule, NgxJsonViewerModule, NgSelectModule, MatTabsModule, MatIconModule, MatCheckboxModule, MatButtonModule],
   exports: [ProfileComponent, ConfirmationDialogComponent, ProfileSidebarComponent, InputDialogComponent]
 })
 export class SharedModule { }

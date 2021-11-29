@@ -16,7 +16,9 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {ErrorService} from './services/middleware/error.service';
 
-import { MatSliderModule } from '@angular/material/slider';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSliderModule} from '@angular/material/slider';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { MatSliderModule } from '@angular/material/slider';
     TrayMenuComponent
   ],
   imports: [
-    MatSliderModule,
+    MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -1,10 +1,4 @@
 .toast-error, .toast-warning, .toast-success, .toast-info {
-  @include transition(all 0.3s ease);
-
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
   border-radius: 4px;
   padding: 20px;
   z-index: 9999;
@@ -16,4 +10,3 @@
 .toast-warning { color: #B5A262 !important; background: #FFF8BA !important; border: 1px solid #FFE200; }
 
 .toast-container { z-index: 99; }
-.toast-title { font-weight: bold; }
