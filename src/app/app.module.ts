@@ -2,10 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToastrModule } from 'ngx-toastr';
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
 import {SharedModule} from './components/shared/shared.module';
 import {InputDialogComponent} from './components/shared/input-dialog/input-dialog.component';
@@ -17,6 +16,8 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {ErrorService} from './services/middleware/error.service';
 
+import { MatSliderModule } from '@angular/material/slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +25,8 @@ import {ErrorService} from './services/middleware/error.service';
     TrayMenuComponent
   ],
   imports: [
+    MatSliderModule,
     BrowserModule,
-    NoopAnimationsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -34,9 +35,6 @@ import {ErrorService} from './services/middleware/error.service';
     ReactiveFormsModule,
     NgSelectModule,
     LayoutModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-full-width'
-    }),
     TooltipModule.forRoot(),
     ModalModule.forRoot()
   ],
