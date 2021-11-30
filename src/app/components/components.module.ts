@@ -16,7 +16,6 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonModule} from "@angular/material/button";
-import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import {SessionComponent} from "./session/session/session.component";
 import {SessionCardComponent} from "./session/session-card/session-card.component";
 import {FilteringPipe} from "./session/session/filtering.pipe";
@@ -51,8 +50,7 @@ import {DetailPipe} from "./session/session-card/detail.pipe";
     MatTabsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule,
-    InfiniteScrollModule
+    MatButtonModule
   ],
   exports: [ConfirmationDialogComponent, InputDialogComponent]
 })
