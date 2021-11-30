@@ -7,7 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import {SnackbarComponent} from "../components/shared/snackbar/snackbar.component";
+import {SnackbarComponent} from "../components/snackbar/snackbar.component";
 
 @Injectable({
   providedIn: 'root'

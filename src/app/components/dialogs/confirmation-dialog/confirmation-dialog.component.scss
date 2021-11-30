@@ -1,5 +1,5 @@
 @import "palette";
-@import "../../../../../assets/scss/mixins/utility";
+@import "../../../../assets/scss/mixins/utility";
 
 .confirm-modal {
   max-width: 300px;
@@ -8,6 +8,7 @@
 
 h4 { color: $text-color; }
 
+//noinspection ALL
 button {
   background-color: #73E0CF;
   color: #080B38;
@@ -38,7 +39,7 @@ button.disabled {
 .button-equalizer button:first-child { float: left; }
 .button-equalizer button:last-child { float: right; }
 
-p { color: $text-color; }
+div,p { color: $text-color; }
 
 .modal-header {
   color: $text-color!important;

@@ -1,9 +1,9 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {FileService} from './file.service';
-import {ConfirmationDialogComponent} from '../components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from '../components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import {FormControl, FormGroup} from '@angular/forms';
 import {environment} from '../../environments/environment';
-import {InputDialogComponent} from '../components/shared/dialogs/input-dialog/input-dialog.component';
+import {InputDialogComponent} from '../components/dialogs/input-dialog/input-dialog.component';
 import {Constants} from '../models/constants';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {ElectronService} from './electron.service';
