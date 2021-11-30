@@ -78,7 +78,7 @@ export class IntegrationComponent implements OnInit, BrowserWindowClosing {
           ssoRoleSession.awsSsoConfigurationId = configurationId;
           this.awsSsoRoleService.create(ssoRoleSession, ssoRoleSession.profileId);
         });
-        this.router.navigate(['/sessions', 'session-selected']);
+        this.router.navigate(['/dashboard']);
         this.loadingInBrowser = false;
         this.loadingInApp = false;
       } catch (err) {
@@ -89,7 +89,7 @@ export class IntegrationComponent implements OnInit, BrowserWindowClosing {
   }
 
   async goBack() {
-    await this.router.navigate(['/sessions', 'session-selected']);
+    await this.router.navigate(['/dashboard']);
   }
 
   async gotoWebForm(integrationId: string) {

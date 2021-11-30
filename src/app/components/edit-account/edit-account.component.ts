@@ -78,7 +78,7 @@ export class EditAccountComponent implements OnInit {
       this.sessionService.update(this.selectedSession.sessionId, this.selectedSession);
       this.loggingService.toast('Session updated correctly.', ToastLevel.success, 'Session Update');
 
-      this.router.navigate(['/sessions', 'session-selected']).then(_ => {});
+      this.router.navigate(['/dashboard']).then(_ => {});
     }
   }
 
@@ -88,7 +88,7 @@ export class EditAccountComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/sessions', 'session-selected']).then(_ => {});
+    this.router.navigate(['/dashboard']).then(_ => {});
   }
 
   openAccessStrategyDocumentation() {

@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
     // Go to initial page if no sessions are already created or
     // go to the list page if is your second visit
     if (workspace.sessions.length > 0) {
-      await this.router.navigate(['/sessions', 'session-selected']);
+      await this.router.navigate(['/dashboard']);
     } else {
       await this.router.navigate(['/start', 'start-page']);
     }

@@ -66,7 +66,7 @@ export class ProfileSidebarComponent implements OnInit {
 
   goToHome() {
     this.closeProfile();
-    this.router.navigate(['/sessions', 'session-selected']).then(_ => {});
+    this.router.navigate(['/dashboard']).then(_ => {});
   }
 
   goToIdentityProvider() {

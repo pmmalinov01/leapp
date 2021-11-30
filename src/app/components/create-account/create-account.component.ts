@@ -163,7 +163,7 @@ export class CreateAccountComponent implements OnInit {
     this.addProfileToWorkspace();
     this.saveNewSsoRolesToWorkspace();
     this.createSession();
-    this.router.navigate(['/sessions', 'session-selected']).then(_ => {});
+    this.router.navigate(['/dashboard']).then(_ => {});
   }
 
   /**
@@ -223,7 +223,7 @@ export class CreateAccountComponent implements OnInit {
    *
    */
   goBack() {
-    this.router.navigate(['/sessions', 'session-selected']).then(_ => {});
+    this.router.navigate(['/dashboard']).then(_ => {});
   }
 
   /**
