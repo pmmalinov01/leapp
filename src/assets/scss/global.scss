@@ -6,12 +6,20 @@ $commandbar-height: 60px;
 $menubar-width: 240px;
 $standard-padding: 20px;
 
+$icon-button-width: 20px;
+$icon-button-height: 20px;
+$icon-button-width-small: 14px;
+$icon-button-height-small: 14px;
+
 html, body { height: 100%; }
 
-body { margin: 0; overflow: hidden; }
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 * {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   outline: none;
 }
 
@@ -38,3 +46,31 @@ hr {
 }
 
 .clear { clear: both; }
+
+.icon-button {
+  border: none!important;
+  outline: none!important;
+  background: none!important;
+
+  display: flex;
+  align-content: center;
+  align-items: center;
+
+  min-width: $icon-button-width!important;
+  min-height: $icon-button-height!important;
+  width: $icon-button-width!important;
+  height: $icon-button-height!important;
+
+  padding: 0!important;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+
+  i {
+    color: $silver-dark;
+    font-size: $icon-button-width;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
