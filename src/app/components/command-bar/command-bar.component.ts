@@ -15,6 +15,6 @@ export class CommandBarComponent implements OnInit {
   }
 
   showDialog() {
-    this.bsModalService.show(OptionsDialogComponent);
+    this.bsModalService.show(OptionsDialogComponent, {class: 'modal-lg'});
   }
 }

@@ -24,6 +24,7 @@ import {DetailPipe} from './sessions/session-card/detail.pipe';
 import { CommandBarComponent } from './command-bar/command-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import {OptionsDialogComponent} from "./dialogs/options-dialog/options-dialog.component";
+import { CreateDialogComponent } from './dialogs/create-dialog/create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {OptionsDialogComponent} from "./dialogs/options-dialog/options-dialog.co
     SnackbarComponent,
     CommandBarComponent,
     SideBarComponent,
-    OptionsDialogComponent
+    OptionsDialogComponent,
+    CreateDialogComponent
   ],
   imports: [
     CommonModule,
