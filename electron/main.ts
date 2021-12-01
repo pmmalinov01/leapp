@@ -20,11 +20,11 @@ app.disableHardwareAcceleration();
 const windowDefaultConfig = {
   dir: path.join(__dirname, `/../../../dist/leapp-client`),
   browserWindow: {
-    width: 514,
-    height: 650,
+    width: 1200,
+    height: 680,
     title: ``,
     icon: path.join(__dirname, `assets/images/Leapp.png`),
-    resizable: false,
+    resizable: true,
     webPreferences: {
       devTools: !environment.production,
       contextIsolation: false,
@@ -80,6 +80,9 @@ const generateMainWindow = () => {
     win.setMenu(null);
     win.loadURL(url.format({ pathname: windowDefaultConfig.dir + '/index.html', protocol: 'file:', slashes: true }));
     win.center();
+
+    // Set new minimum windows for opened tool. Note: it can also be modified at runtime
+    win.setMinimumSize(1200, 680);
 
     // Open the dev tools only if not in production
     if (!environment.production) {
