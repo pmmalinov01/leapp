@@ -1,17 +1,11 @@
-@import "../../../assets/scss/mixins/palette";
-@import "../../../assets/scss/mixins/utility";
+@import "../../../../assets/scss/mixins/palette";
+@import "../../../../assets/scss/mixins/utility";
 
 .container-fluid {
   background: white;
   color: $text-color;
   font-family: "AvenirNext", "Open Sans", sans-serif;
   padding: 0 25px;
-
-  position: fixed;
-  left: 0;
-  transition: left 0.3s ease;
-  bottom: 0;
-  top: 0;
 
   .pull-right {
     position: absolute;
@@ -232,4 +226,10 @@
 @keyframes moving {
   from { left: 0; }
   to { left: -10px; }
+}
+
+.confirm-modal {
+  max-width: 400px;
+  width: 100%;
+  margin: 20px 15px;
 }

@@ -1,22 +1,22 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AppService, ToastLevel} from '../../services/app.service';
+import {AppService, ToastLevel} from '../../../services/app.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Workspace} from '../../models/workspace';
-import {SessionType} from '../../models/session-type';
-import {AwsIamUserSession} from '../../models/aws-iam-user-session';
-import {WorkspaceService} from '../../services/workspace.service';
-import {KeychainService} from '../../services/keychain.service';
-import {environment} from '../../../environments/environment';
-import {SessionService} from '../../services/session.service';
-import {LoggingService} from '../../services/logging.service';
+import {Workspace} from '../../../models/workspace';
+import {SessionType} from '../../../models/session-type';
+import {AwsIamUserSession} from '../../../models/aws-iam-user-session';
+import {WorkspaceService} from '../../../services/workspace.service';
+import {KeychainService} from '../../../services/keychain.service';
+import {environment} from '../../../../environments/environment';
+import {SessionService} from '../../../services/session.service';
+import {LoggingService} from '../../../services/logging.service';
 
 @Component({
-  selector: 'app-edit-account',
-  templateUrl: './edit-account.component.html',
-  styleUrls: ['./edit-account.component.scss']
+  selector: 'app-edit-dialog',
+  templateUrl: './edit-dialog.component.html',
+  styleUrls: ['./edit-dialog.component.scss']
 })
-export class EditAccountComponent implements OnInit {
+export class EditDialogComponent implements OnInit {
   @ViewChild('roleInput', {static: false}) roleInput: ElementRef;
 
   accountType = SessionType.awsIamUser;
@@ -95,3 +95,4 @@ export class EditAccountComponent implements OnInit {
     this.appService.openExternalUrl('https://github.com/Noovolari/leapp/blob/master/README.md');
   }
 }
+
