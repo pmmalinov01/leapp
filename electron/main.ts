@@ -38,6 +38,9 @@ if(process.platform !== 'win32') {
   windowDefaultConfig.browserWindow['titleBarStyle'] = 'hidden';
   windowDefaultConfig.browserWindow['titleBarOverlay'] = true;
 }
+if(process.platform === 'darwin') {
+  windowDefaultConfig.browserWindow['trafficLightPosition'] = {x: 20, y: 20};
+}
 
 const buildAutoUpdater = (win: any): void => {
   autoUpdater.allowDowngrade = false;

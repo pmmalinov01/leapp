@@ -4,10 +4,11 @@ $border-radius: 5px;
 $optionbar-height: 60px;
 $commandbar-height: 60px;
 $menubar-width: 240px;
+$standard-padding: 20px;
 
 html, body { height: 100%; }
 
-body { margin: 0; }
+body { margin: 0; overflow: hidden; }
 
 * {
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -35,3 +36,5 @@ body { margin: 0; }
 hr {
   margin: 10px 0;
 }
+
+.clear { clear: both; }

@@ -4,7 +4,7 @@
   display: block;
   width: 100%;
   height: $commandbar-height;
-  border-bottom: 1px solid $silver-dark;
+  -webkit-app-region: drag;
 }
 
 .side-bar {
@@ -12,7 +12,8 @@
   float: left;
   width: $menubar-width;
   height: calc(100vh - #{$commandbar-height});
-  border-right: 1px solid $silver-dark
+  border-right: 1px solid $silver-75;
+  padding: $standard-padding;
 }
 
 .sessions {
@@ -20,6 +21,6 @@
   float: right;
   width: calc(100% - #{$menubar-width});
   height: calc(100vh - #{$commandbar-height});
+  padding: $standard-padding;
+  overflow: auto;
 }
-
-.clear { clear: both; }

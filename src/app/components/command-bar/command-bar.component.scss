@@ -1,0 +1,16 @@
+@import "../../../assets/scss/global";
+
+.left {
+  float: left;
+  width: $menubar-width;
+  height: $commandbar-height;
+  padding: $standard-padding;
+  border-right: 1px solid $silver-75;
+}
+.right {
+  float: right;
+  width: calc(100% - #{$menubar-width});
+  height: $commandbar-height;
+  padding: $standard-padding;
+  border-bottom: 1px solid $silver-75;
+}
