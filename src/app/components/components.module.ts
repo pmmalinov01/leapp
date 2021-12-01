@@ -23,6 +23,7 @@ import {QueryingPipe} from './sessions/session/pipes/querying.pipe';
 import {DetailPipe} from './sessions/session-card/detail.pipe';
 import { CommandBarComponent } from './command-bar/command-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import {OptionsDialogComponent} from "./dialogs/options-dialog/options-dialog.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     UpdateDialogComponent,
     SnackbarComponent,
     CommandBarComponent,
-    SideBarComponent
+    SideBarComponent,
+    OptionsDialogComponent
   ],
   imports: [
     CommonModule,
