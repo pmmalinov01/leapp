@@ -47,6 +47,13 @@ hr {
 
 .clear { clear: both; }
 
+.line-start { margin-right: auto; }
+.line-end { margin-left: auto; }
+
+
+
+
+
 .icon-button {
   border: none!important;
   outline: none!important;
@@ -62,10 +69,11 @@ hr {
   height: $icon-button-height!important;
 
   padding: 0!important;
+
   transition: opacity 0.3s ease;
   cursor: pointer;
 
-  i {
+  i, mat-icon {
     color: $silver-dark;
     font-size: $icon-button-width;
   }

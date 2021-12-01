@@ -1,9 +1,47 @@
 @import "mixins/utility";
 @import "mixins/palette";
+@import "global";
 
-.btn {
-  border: none!important;
+$padding-form-control: 5px 10px;
+$font-size-form-control: 14px;
+$form-control-height: 40px!important;
+$form-control-min-width: 290px;
+
+.form-control {
+  display: inline-block;
+  min-width: $form-control-min-width;
+  width: 100%;
+  height: $form-control-height;
+  background: $silver-25;
+  border-radius: $border-radius;
+  color: $silver-dark;
+  font-size: $font-size-form-control;
+  padding: $padding-form-control;
+  transition: all 0.3s ease;
+
+  &:focus {
+    background: $white-text-color;
+    border: 1px solid $text-color;
+    color: $text-color;
+  }
 }
+
+.form-control-input-icon {
+  display: inline-block;
+  position: relative;
+  .form-control {
+    padding-left: 32px!important;
+  }
+  i {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+  }
+}
+
+
+
+
 .form-group {
   height: 62px;
   margin-bottom: 10px;
@@ -11,29 +49,4 @@
 }
 .form-group small { float: right; }
 
-.no-data {
-  position: absolute;
-  top: 21px;
-  height: 90vh;
-  width: 89%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  color: $text-color;
-  font-size: 16px;
-}
 
-input { height: 36px!important; }
-
-form button {
-  position: relative;
-  bottom: 5px;
-}
-
-.form-control:focus {
-  outline: 0;
-  border: 1px solid $main-color-light;
-  box-shadow: 0 0 0 0.2rem $focused-element;
-}

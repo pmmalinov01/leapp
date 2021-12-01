@@ -1,9 +1,19 @@
 <div class="left">
-  left
+  <button class="icon-button line-end" (click)="false;"><mat-icon>chrome_reader_mode</mat-icon></button>
 </div>
 <div class="right">
+  <button class="icon-button line-start" (click)="false;"><i class="fal fa-plus-circle"></i></button>
 
-  <button class="icon-button" (click)="showOptionDialog();"><i class="fal fa-cog"></i></button>
+  <button class="icon-button" (click)="false;"><mat-icon>filter_list</mat-icon></button>
+
+  <div class="form-control-input-icon">
+    <input type="text" class="form-control search-bar" placeholder="Search session" />
+    <i class="fal fa-search"></i>
+  </div>
+
+  <button class="icon-button" (click)="false;"><i class="fal fa-redo"></i></button>
+
+  <button class="icon-button line-end" (click)="showOptionDialog();"><i class="fal fa-cog"></i></button>
 </div>
 <div class="clear"></div>
 
