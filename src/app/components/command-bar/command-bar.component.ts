@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BsModalService} from "ngx-bootstrap/modal";
+import {OptionsDialogComponent} from "../dialogs/options-dialog/options-dialog.component";
 
 @Component({
   selector: 'app-command-bar',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommandBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bsModalService: BsModalService) { }
 
   ngOnInit(): void {
   }
 
+  showDialog() {
+    this.bsModalService.show(OptionsDialogComponent);
+  }
 }
