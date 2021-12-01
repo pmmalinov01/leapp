@@ -5,7 +5,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog/confirmation-dialog.component';
-import {ProfilePageComponent} from '../to-be-moved/profile-page/profile-page.component';
 import {InputDialogComponent} from './dialogs/input-dialog/input-dialog.component';
 import {SnackbarComponent} from './snackbar/snackbar.component';
 import {UpdateDialogComponent} from './dialogs/update-dialog/update-dialog.component';
@@ -24,6 +23,8 @@ import {DetailPipe} from './sessions/session-card/detail.pipe';
 import { CommandBarComponent } from './command-bar/command-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import {OptionsDialogComponent} from "./dialogs/options-dialog/options-dialog.component";
+import { CreateDialogComponent } from './dialogs/create-dialog/create-dialog.component';
+import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +35,14 @@ import {OptionsDialogComponent} from "./dialogs/options-dialog/options-dialog.co
     QueryingPipe,
     DetailPipe,
     ConfirmationDialogComponent,
-    ProfilePageComponent,
     InputDialogComponent,
     UpdateDialogComponent,
     SnackbarComponent,
     CommandBarComponent,
     SideBarComponent,
-    OptionsDialogComponent
+    OptionsDialogComponent,
+    CreateDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     CommonModule,

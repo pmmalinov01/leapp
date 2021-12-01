@@ -1,26 +1,26 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AppService, LoggerLevel} from '../../services/app.service';
+import {AppService, LoggerLevel} from '../../../services/app.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AwsSessionService} from '../../services/session/aws/aws-session.service';
-import {WorkspaceService} from '../../services/workspace.service';
-import {SessionType} from '../../models/session-type';
-import {environment} from '../../../environments/environment';
+import {AwsSessionService} from '../../../services/session/aws/aws-session.service';
+import {WorkspaceService} from '../../../services/workspace.service';
+import {SessionType} from '../../../models/session-type';
+import {environment} from '../../../../environments/environment';
 import * as uuid from 'uuid';
-import {AwsIamUserSessionRequest, AwsIamUserService} from '../../services/session/aws/methods/aws-iam-user.service';
-import {AwsIamRoleChainedSessionRequest, AwsIamRoleChainedService} from '../../services/session/aws/methods/aws-iam-role-chained.service';
-import {LeappParseError} from '../../errors/leapp-parse-error';
-import {AwsIamRoleFederatedSessionRequest, AwsIamRoleFederatedService} from '../../services/session/aws/methods/aws-iam-role-federated.service';
-import {AzureService, AzureSessionRequest} from '../../services/session/azure/azure.service';
-import {LoggingService} from '../../services/logging.service';
+import {AwsIamUserSessionRequest, AwsIamUserService} from '../../../services/session/aws/methods/aws-iam-user.service';
+import {AwsIamRoleChainedSessionRequest, AwsIamRoleChainedService} from '../../../services/session/aws/methods/aws-iam-role-chained.service';
+import {LeappParseError} from '../../../errors/leapp-parse-error';
+import {AwsIamRoleFederatedSessionRequest, AwsIamRoleFederatedService} from '../../../services/session/aws/methods/aws-iam-role-federated.service';
+import {AzureService, AzureSessionRequest} from '../../../services/session/azure/azure.service';
+import {LoggingService} from '../../../services/logging.service';
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.scss']
+  selector: 'app-create-dialog',
+  templateUrl: './create-dialog.component.html',
+  styleUrls: ['./create-dialog.component.scss']
 })
 
-export class CreateAccountComponent implements OnInit {
+export class CreateDialogComponent implements OnInit {
 
   @Input() selectedSession;
   @Input() selectedAccountNumber = '';
@@ -107,9 +107,9 @@ export class CreateAccountComponent implements OnInit {
       // We got all the applicable profiles
       // Note: we don't use azure profile so we remove default azure profile from the list
       workspace.profiles.forEach(idp => {
-          if (idp !== null && idp.name !== environment.defaultAzureProfileName) {
-            this.profiles.push({value: idp.id, label: idp.name});
-          }
+        if (idp !== null && idp.name !== environment.defaultAzureProfileName) {
+          this.profiles.push({value: idp.id, label: idp.name});
+        }
       });
 
       // This way we also fix potential incongruences when you have half saved setup
@@ -118,8 +118,8 @@ export class CreateAccountComponent implements OnInit {
 
       // Show the assumable accounts
       this.assumerAwsSessions = this.awsSessionService.listAssumable().map(session => ({
-          sessionName: session.sessionName,
-          session
+        sessionName: session.sessionName,
+        session
       }));
 
       // Only for start screen: disable IAM Chained creation
@@ -144,7 +144,7 @@ export class CreateAccountComponent implements OnInit {
    * @param tag
    */
   addNewSSO(tag: string): { value: string; label: string } {
-   return { value: uuid.v4(), label: tag };
+    return { value: uuid.v4(), label: tag };
   }
 
   /**
@@ -153,7 +153,7 @@ export class CreateAccountComponent implements OnInit {
    * @param tag
    */
   addNewProfile(tag: string): { value: string; label: string } {
-   return { value: uuid.v4(), label: tag };
+    return { value: uuid.v4(), label: tag };
   }
 
   /**
