@@ -169,7 +169,7 @@ export class TrayMenuComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Remove session and credential file before exiting program
+   * Remove sessions and credential file before exiting program
    */
   async cleanBeforeExit() {
     // Check if we are here

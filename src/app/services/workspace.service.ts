@@ -86,7 +86,7 @@ export class WorkspaceService {
   }
 
   addSession(session: Session) {
-    // we assign a new copy of session by adding a new session to it
+    // we assign a new copy of sessions by adding a new sessions to it
     this.sessions = [
       ...this.sessions,
       session

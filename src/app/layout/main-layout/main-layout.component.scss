@@ -1,6 +1,25 @@
-@import "palette";
+@import "../../../assets/scss/global";
 
-.background {
-  background: $background;
-  padding-top: 30px;
+.command-bar {
+  display: block;
+  width: 100%;
+  height: $commandbar-height;
+  border-bottom: 1px solid $silver-dark;
 }
+
+.side-bar {
+  display: block;
+  float: left;
+  width: $menubar-width;
+  height: calc(100vh - #{$commandbar-height});
+  border-right: 1px solid $silver-dark
+}
+
+.sessions {
+  display: block;
+  float: right;
+  width: calc(100% - #{$menubar-width});
+  height: calc(100vh - #{$commandbar-height});
+}
+
+.clear { clear: both; }

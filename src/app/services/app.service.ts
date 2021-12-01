@@ -523,7 +523,7 @@ export class AppService {
   /**
    * Check if the account is of type azure or not
    *
-   * @param s - the session containing the account
+   * @param s - the sessions containing the account
    */
   isAzure(s) {
    return s.subscriptionId !== null && s.subscriptionId !== undefined;

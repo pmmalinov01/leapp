@@ -1,8 +1,16 @@
+@import "../../../assets/scss/mixins/palette";
+
 .float { float: left; }
 .clear { clear: both; }
 .large { width: 98% }
 .small {
-  width: 2%; font-size: 20px; text-decoration: none; color: #343e48; opacity: 0.8; cursor: pointer; transition: opacity 0.2s ease;
+  width: 2%;
+  font-size: 20px;
+  text-decoration: none;
+  color: $background;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
   &:hover { opacity: 0.5; }
 }
 

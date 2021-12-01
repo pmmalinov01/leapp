@@ -16,7 +16,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {ErrorService} from './services/middleware/error.service';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {ComponentsModule} from "./components/components.module";
+import {ComponentsModule} from './components/components.module';
 
 
 @NgModule({

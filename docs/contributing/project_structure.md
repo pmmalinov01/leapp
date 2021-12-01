@@ -248,9 +248,9 @@ Finally, we add the session to the workspace (our configuration object).
 
 ```tsx
 async generateCredentials(sessionId: string): Promise<CredentialsInfo> {
-      // Get the session in question
+      // Get the sessions in question
       const session = this.get(sessionId);
-      // Retrieve session token expiration
+      // Retrieve sessions token expiration
       const tokenExpiration = (session as AwsIamUserSession).sessionTokenExpiration;
       // Check if token is expired
       if (!tokenExpiration || AwsIamUserService.isTokenExpired(tokenExpiration)) {
@@ -258,26 +258,26 @@ async generateCredentials(sessionId: string): Promise<CredentialsInfo> {
         // Retrieve access keys from keychain
         const accessKeyId = await this.getAccessKeyFromKeychain(sessionId);
         const secretAccessKey = await this.getSecretKeyFromKeychain(sessionId);
-        // Get session token
+        // Get sessions token
         // https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html
         AWS.config.update({ accessKeyId, secretAccessKey });
         // Configure sts client options
         const sts = new AWS.STS(this.appService.stsOptions(session));
-        // Configure sts get-session-token api call params
+        // Configure sts get-sessions-token api call params
         // eslint-disable-next-line @typescript-eslint/naming-convention
         const params = { DurationSeconds: environment.sessionTokenDuration };
         // Check if MFA is needed or not
         if ((session as AwsIamUserSession).mfaDevice) {
-          // Return session token after calling MFA modal
+          // Return sessions token after calling MFA modal
           return this.generateSessionTokenCallingMfaModal(session, sts, params);
         } else {
-          // Return session token in the form of CredentialsInfo
+          // Return sessions token in the form of CredentialsInfo
           return this.generateSessionToken(session, sts, params);
         }
       } else {
         // Session Token is NOT expired
         try {
-          // Retrieve session token from keychain
+          // Retrieve sessions token from keychain
           return JSON.parse(await this.keychainService.getSecret(environment.appName, `${session.sessionId}-iam-user-aws-session-token`));
         } catch (err) {
           throw new LeappParseError(this, err.message);
@@ -307,7 +307,7 @@ private generateSessionTokenCallingMfaModal( session: Session, sts: AWS.STS, par
         if (value !== Constants.confirmClosed) {
           params['SerialNumber'] = (session as AwsIamUserSession).mfaDevice;
           params['TokenCode'] = value;
-          // Return session token in the form of CredentialsInfo
+          // Return sessions token in the form of CredentialsInfo
           resolve(this.generateSessionToken(session, sts, params));
         } else {
           reject(new LeappMissingMfaTokenError(this, 'Missing Multi Factor Authentication code'));
@@ -362,16 +362,16 @@ private async getSecretKeyFromKeychain(sessionId: string): Promise<string> {
 
 private async generateSessionToken(session: Session, sts: AWS.STS, params: any): Promise<CredentialsInfo> {
     try {
-      // Invoke sts get-session-token api
+      // Invoke sts get-sessions-token api
       const getSessionTokenResponse: GetSessionTokenResponse = await sts.getSessionToken(params).promise();
 
-      // Save session token expiration
+      // Save sessions token expiration
       this.saveSessionTokenResponseInTheSession(session, getSessionTokenResponse);
 
-      // Generate correct object from session token response
+      // Generate correct object from sessions token response
       const sessionToken = AwsIamUserService.sessionTokenFromGetSessionTokenResponse(getSessionTokenResponse);
 
-      // Save in keychain the session token
+      // Save in keychain the sessions token
       await this.keychainService.saveSecret(environment.appName, `${session.sessionId}-iam-user-aws-session-token`, JSON.stringify(sessionToken));
 
       // Return Session Token
