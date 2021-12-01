@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {ConfirmationDialogComponent} from "./dialogs/confirmation-dialog/confirmation-dialog.component";
-import {ProfilePageComponent} from "../temp/profile-page/profile-page.component";
+import {ProfilePageComponent} from "../to-be-moved/profile-page/profile-page.component";
 import {InputDialogComponent} from "./dialogs/input-dialog/input-dialog.component";
 import {SnackbarComponent} from "./snackbar/snackbar.component";
 import {UpdateDialogComponent} from "./dialogs/update-dialog/update-dialog.component";
