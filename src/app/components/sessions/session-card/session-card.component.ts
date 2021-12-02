@@ -20,7 +20,8 @@ import {AwsIamUserService} from '../../../services/session/aws/methods/aws-iam-u
 import {LoggingService} from '../../../services/logging.service';
 
 @Component({
-  selector: 'app-session-card',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'tr[app-session-card]',
   templateUrl: './session-card.component.html',
   styleUrls: ['./session-card.component.scss'],
 
@@ -353,15 +354,28 @@ export class SessionCardComponent implements OnInit {
   }
 
   getSessionProviderClass(type: SessionType) {
-
+    switch (type) {
+      case SessionType.azure: return 'blue';
+      case SessionType.awsIamUser: return 'orange';
+      case SessionType.awsSsoRole: return 'red';
+      case SessionType.awsIamRoleFederated: return 'green';
+      case SessionType.awsIamRoleChained: return 'purple';
+    }
   }
 
   getSessionProviderLabel(type: SessionType) {
-
+    switch (type) {
+      case SessionType.azure: return 'Azure';
+      case SessionType.awsIamUser: return 'IAM User';
+      case SessionType.awsSsoRole: return 'AWS Single Sign-On';
+      case SessionType.awsIamRoleFederated: return 'IAM Role Federated';
+      case SessionType.awsIamRoleChained: return 'IAM Role Chained';
+    }
   }
 
   copyProfile(profileName: string) {
-
+    this.appService.copyToClipboard(profileName);
+    this.loggingService.toast('Profile name copied!', ToastLevel.success, 'Information copied!');
   }
 
   private logSessionData(session: Session, message: string): void {

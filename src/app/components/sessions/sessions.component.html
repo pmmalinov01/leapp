@@ -1,7 +1,16 @@
 <table class="table table-account-cards">
-  <ng-container *ngFor="let session of workspaceService.sessions$ | async | ordering">
-    <tr *ngIf="(showOnly === 'ALL') || ($any(session).subscriptionId ? showOnly === 'AZR' : showOnly === 'aws')">
-      <app-session-card [session]="session"></app-session-card>
+  <thead>
+    <tr>
+      <th>Session</th>
+      <th>Role</th>
+      <th>Provider</th>
+      <th>Named Profile</th>
+      <th>Region</th>
+      <th><span class="vertical-rule"></span>&nbsp;<i class="fal fa-th-list"></i></th>
     </tr>
-  </ng-container>
+  </thead>
+  <tbody>
+    <tr class="active" app-session-card [session]="session" *ngFor="let session of workspaceService.sessions$ | async | filtering:true"></tr>
+    <tr app-session-card [session]="session" *ngFor="let session of workspaceService.sessions$ | async | filtering:false | ordering"></tr>
+  </tbody>
 </table>

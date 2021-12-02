@@ -23,6 +23,5 @@
   float: right;
   width: calc(100% - #{$menubar-width});
   height: calc(100vh - #{$commandbar-height});
-  padding: $standard-padding;
   overflow: auto;
 }

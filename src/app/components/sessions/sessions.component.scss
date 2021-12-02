@@ -1,1 +1,13 @@
+@import "../../../assets/scss/mixins/palette";
 
+.vertical-rule {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  border-left: 1px solid $silver-50;
+  margin-right: 10px;
+}
+
+tr.active {
+  background: aquamarine;
+}

@@ -5,3 +5,9 @@
 .active { background: $success; }
 
 .offline { background: $silver-25; }
+
+td:nth-child(1) {
+  font-size: 16px;
+  color: $text-color;
+  img { width: 30px; }
+}

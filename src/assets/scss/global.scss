@@ -94,13 +94,16 @@ hr { margin: 10px 0; }
   display: inline-block;
   padding: 5px;
   min-width: 50px;
-  height: 40px;
+  height: 24px;
   font-size: 12px;
+  font-weight: normal;
+  text-transform: uppercase;
 
   background: $main-color-light;
+  border-radius: 0;
   color: $white-text-color;
 
-  &.badge-rounded { border-radius: $border-radius; }
+  &.badge-rounded { height: 20px; border-radius: 12px; text-transform: none; font-size: 10px; }
   &.badge-gray { background: $silver-50; color: $text-color; }
   &.badge-black { background: $text-color; color: $white-text-color; }
   &.badge-blue { background: $dark-sky-blue; color: $white-text-color; }
@@ -112,10 +115,31 @@ hr { margin: 10px 0; }
 }
 
 .table {
-  td {
-    vertical-align: center;
-    text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none!important;
+
+  tr {
+    border: none;
+  }
+
+  thead th {
+    font-size: 14px;
+    font-weight: normal;
+    position: sticky; top: 0;
+    background: $white-text-color;
+  }
+
+  tbody td, thead th {
+    color: $silver-dark;
     padding: 10px;
+    border: none;
     border-bottom: 1px solid $silver-50;
+    height: 57px;
+  }
+
+  tbody td {
+    vertical-align: middle;
   }
 }
