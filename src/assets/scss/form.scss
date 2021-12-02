@@ -42,11 +42,12 @@ $form-control-min-width: 290px;
 
 
 
-.form-group {
-  height: 62px;
-  margin-bottom: 10px;
-  vertical-align: middle;
+
+
+
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background: #78E0CF;
 }
-.form-group small { float: right; }
-
-

@@ -1,6 +1,7 @@
 @import "mixins/palette.scss";
 
 $border-radius: 5px;
+$modal-border-radius: 20px;
 $optionbar-height: 60px;
 $commandbar-height: 60px;
 $menubar-width: 240px;
@@ -51,7 +52,7 @@ img  {
 
 a { text-decoration: none; cursor: pointer; }
 
-hr { margin: 10px 0; }
+hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-50; }
 
 .clear { clear: both; }
 
