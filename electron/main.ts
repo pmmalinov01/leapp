@@ -127,6 +127,7 @@ const generateMainWindow = () => {
   app.on('activate', () => {
     if (win === undefined) {
       createWindow();
+      require('electron-disable-file-drop');
     } else {
       win.show();
     }

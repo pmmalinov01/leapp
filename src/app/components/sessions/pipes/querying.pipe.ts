@@ -1,9 +1,9 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Session} from '../../../../models/session';
-import {AwsIamRoleFederatedSession} from '../../../../models/aws-iam-role-federated-session';
-import {AzureSession} from '../../../../models/azure-session';
-import {Workspace} from '../../../../models/workspace';
-import {AwsSsoRoleSession} from '../../../../models/aws-sso-role-session';
+import {Session} from '../../../models/session';
+import {AwsIamRoleFederatedSession} from '../../../models/aws-iam-role-federated-session';
+import {AzureSession} from '../../../models/azure-session';
+import {Workspace} from '../../../models/workspace';
+import {AwsSsoRoleSession} from '../../../models/aws-sso-role-session';
 
 
 @Pipe({

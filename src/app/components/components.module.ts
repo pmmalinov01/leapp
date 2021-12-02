@@ -14,21 +14,21 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
-import {SessionComponent} from './sessions/session/session.component';
+import {SessionsComponent} from './sessions/sessions.component';
 import {SessionCardComponent} from './sessions/session-card/session-card.component';
-import {FilteringPipe} from './sessions/session/pipes/filtering.pipe';
-import {OrderingPipe} from './sessions/session/pipes/ordering.pipe';
-import {QueryingPipe} from './sessions/session/pipes/querying.pipe';
+import {FilteringPipe} from './sessions/pipes/filtering.pipe';
+import {OrderingPipe} from './sessions/pipes/ordering.pipe';
+import {QueryingPipe} from './sessions/pipes/querying.pipe';
 import {DetailPipe} from './sessions/session-card/detail.pipe';
 import { CommandBarComponent } from './command-bar/command-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import {OptionsDialogComponent} from "./dialogs/options-dialog/options-dialog.component";
+import {OptionsDialogComponent} from './dialogs/options-dialog/options-dialog.component';
 import { CreateDialogComponent } from './dialogs/create-dialog/create-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
-    SessionComponent,
+    SessionsComponent,
     SessionCardComponent,
     FilteringPipe,
     OrderingPipe,
@@ -58,6 +58,6 @@ import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component
     MatCheckboxModule,
     MatButtonModule
   ],
-  exports: [ConfirmationDialogComponent, InputDialogComponent, CommandBarComponent, SideBarComponent, SessionComponent]
+  exports: [ConfirmationDialogComponent, InputDialogComponent, CommandBarComponent, SideBarComponent, SessionsComponent]
 })
 export class ComponentsModule { }

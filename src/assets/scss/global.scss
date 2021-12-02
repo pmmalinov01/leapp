@@ -19,8 +19,16 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-* {
-  outline: none;
+img  {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+}
+
+:focus
+{
+  outline: none !important;
+  box-shadow: none;
 }
 
 ::-webkit-scrollbar-track
@@ -41,17 +49,16 @@ body {
   background-color: $silver-dark;
 }
 
-hr {
-  margin: 10px 0;
-}
+a { text-decoration: none; cursor: pointer; }
+
+hr { margin: 10px 0; }
 
 .clear { clear: both; }
 
 .line-start { margin-right: auto; }
 .line-end { margin-left: auto; }
 
-
-
+.string { font-weight: bold; }
 
 
 .icon-button {
@@ -80,5 +87,35 @@ hr {
 
   &:hover {
     opacity: 0.7;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px;
+  min-width: 50px;
+  height: 40px;
+  font-size: 12px;
+
+  background: $main-color-light;
+  color: $white-text-color;
+
+  &.badge-rounded { border-radius: $border-radius; }
+  &.badge-gray { background: $silver-50; color: $text-color; }
+  &.badge-black { background: $text-color; color: $white-text-color; }
+  &.badge-blue { background: $dark-sky-blue; color: $white-text-color; }
+  &.badge-orange { background: $aws; color: $white-text-color; }
+  &.badge-red { background: $danger-color; color: $white-text-color; }
+  &.badge-green { background: $success-color; color: $white-text-color; }
+  &.badge-purple { background: $primary-color; color: $white-text-color; }
+  &.badge-azure { background: $main-color-light; color: $white-text-color; }
+}
+
+.table {
+  td {
+    vertical-align: center;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid $silver-50;
   }
 }

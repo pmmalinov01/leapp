@@ -4,6 +4,8 @@
   display: block;
   width: 100%;
   height: $commandbar-height;
+  -webkit-user-select: auto;
+  -webkit-user-drag: auto;
   -webkit-app-region: drag;
 }
 

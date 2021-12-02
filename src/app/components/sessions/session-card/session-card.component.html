@@ -1,17 +1,30 @@
-<div class="session-card button-area  {{session.type === eSessionType.azure ? 'azr' : 'aws'}} {{session.status === eSessionStatus.active ? 'active' : ''}}">
-  <span class="region-label {{session.type === eSessionType.azure ? 'azr' : 'aws'}}">{{session.region}}</span>
-  <div class="information" (click)="switchCredentials()" title="{{ session | detail }}">
-    <b>{{session.sessionName}}</b><ng-container *ngIf="session.type !== eSessionType.awsIamUser"> - {{ session | detail }}</ng-container>
-  </div>
-  <div class="information-profile" (click)="switchCredentials()">
-    <ng-container *ngIf="session.type !== eSessionType.azure">
-      <i class="fa fa-{{getIcon(session)}}"></i>&nbsp;&nbsp;{{getProfileName(getProfileId(session))}}
-    </ng-container>
-  </div>
-  <div class="information-offset" (click)="switchCredentials()">
-    <i class="status-item fas fa-circle {{session.status === eSessionStatus.active ? 'active' : 'offline'}}" *ngIf="session.status !== eSessionStatus.pending"></i>
-    <i class="status-item far fa-spinner-third fa-spin" *ngIf="session.status === eSessionStatus.pending"></i>
-  </div>
+<td (click)="switchCredentials()">
+  <img src="assets/images/{{getSessionTypeIcon(session.type)}}.png" alt="" title="" />
+  &nbsp;
+  <span class="{{session.status === eSessionStatus.active ? 'strong' : ''}}">{{session.sessionName}}</span>
+  &nbsp;
+  <i class="fal fa-thumbtack" *ngIf="workspaceService.getWorkspace().pinned.indexOf(session.sessionId) !== -1"></i>
+</td>
+<td (click)="switchCredentials()">
+  <ng-container *ngIf="session.type !== eSessionType.awsIamUser">{{ session | detail }}</ng-container>
+</td>
+<td (click)="switchCredentials()">
+  <span class="badge badge-rounded badge-{{getSessionProviderClass(session.type)}}">{{getSessionProviderLabel(session.type)}}</span>
+</td>
+<td (click)="switchCredentials()">
+  <ng-container *ngIf="session.type !== eSessionType.azure">
+  {{getProfileName(getProfileId(session))}}
+  <a (click)="copyProfile(getProfileName(getProfileId(session)))"><i class="fal fa-copy"></i></a>
+  </ng-container>
+</td>
+<td (click)="switchCredentials()">
+  <span class="badge badge-{{session.status === eSessionStatus.active ? 'black' : 'gray'}}">{{session.region}}</span>
+</td>
+<td (click)="switchCredentials()">
+  <i class="status-item fas fa-circle {{session.status === eSessionStatus.active ? 'active' : 'offline'}}" *ngIf="session.status !== eSessionStatus.pending"></i>
+  <i class="status-item far fa-spinner-third fa-spin" *ngIf="session.status === eSessionStatus.pending"></i>
+
+
 
   <ng-container dropdown placement="right" [autoClose]="true">
     <a dropdownToggle class="drop-list-container" aria-controls="drop-list">
@@ -32,8 +45,10 @@
 
     </div>
   </ng-container>
+</td>
 
-</div>
+
+
 
 <ng-template #ssmModalTemplate>
   <div class="modal-header">

@@ -1,0 +1,7 @@
+<table class="table table-account-cards">
+  <ng-container *ngFor="let session of workspaceService.sessions$ | async | ordering">
+    <tr *ngIf="(showOnly === 'ALL') || ($any(session).subscriptionId ? showOnly === 'AZR' : showOnly === 'aws')">
+      <app-session-card [session]="session"></app-session-card>
+    </tr>
+  </ng-container>
+</table>

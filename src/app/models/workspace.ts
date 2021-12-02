@@ -14,6 +14,8 @@ export class Workspace {
 
   private _awsSsoIntegrations: AwsSsoIntegration[];
 
+  private _pinned: string[];
+
   private _proxyConfiguration: {
     proxyProtocol: string;
     proxyUrl: string;
@@ -25,6 +27,7 @@ export class Workspace {
   private _version: string;
 
   constructor() {
+    this._pinned = [];
     this._sessions = [];
     this._defaultRegion = environment.defaultRegion;
     this._defaultLocation = environment.defaultLocation;
@@ -102,5 +105,13 @@ export class Workspace {
 
   get version(): string {
     return this._version;
+  }
+
+  get pinned() {
+    return this._pinned;
+  }
+
+  set pinned(pinned: string[] ) {
+    this._pinned = pinned;
   }
 }

@@ -15,7 +15,6 @@ import {AwsSsoRoleSession} from '../models/aws-sso-role-session';
 })
 
 export class WorkspaceService {
-
   // Expose the observable$ part of the _sessions subject (read only stream)
   readonly sessions$: Observable<Session[]>;
 
@@ -34,7 +33,6 @@ export class WorkspaceService {
     private appService: AppService,
     private fileService: FileService
   ) {
-
     this._sessions = new BehaviorSubject<Session[]>([]);
     this.sessions$ = this._sessions.asObservable();
 

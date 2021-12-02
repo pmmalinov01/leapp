@@ -1,16 +1,19 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {WorkspaceService} from '../../../services/workspace.service';
+import {WorkspaceService} from '../../services/workspace.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AppService} from '../../../services/app.service';
+import {AppService} from '../../services/app.service';
 import {HttpClient} from '@angular/common/http';
 import {BsModalService} from 'ngx-bootstrap/modal';
+import {globalFilteredSessions} from '../command-bar/command-bar.component';
 
 @Component({
   selector: 'app-session',
-  templateUrl: './session.component.html',
-  styleUrls: ['./session.component.scss']
+  templateUrl: './sessions.component.html',
+  styleUrls: ['./sessions.component.scss']
 })
-export class SessionComponent implements OnInit {
+export class SessionsComponent implements OnInit {
+
+  eGlobalFilteredSessions = globalFilteredSessions;
 
   @ViewChild('filterField', { static: false })
   filterField: ElementRef;

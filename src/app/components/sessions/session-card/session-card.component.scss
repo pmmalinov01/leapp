@@ -1,1 +1,7 @@
+@import "../../../../assets/scss/mixins/palette";
 
+.status-item {}
+
+.active { background: $success; }
+
+.offline { background: $silver-25; }
