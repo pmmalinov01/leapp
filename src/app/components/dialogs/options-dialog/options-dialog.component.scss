@@ -3,6 +3,15 @@
 
 body {}
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  .form-field {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
 .antiglobal.background {
   background: $white-text-color;
   padding-top: 30px;
