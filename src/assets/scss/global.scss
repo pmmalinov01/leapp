@@ -146,3 +146,76 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
     vertical-align: middle;
   }
 }
+
+/* TABS Style */
+.tabs{ position: relative; margin: 0; }
+
+.tabs .tab {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin:0 2px -1px;
+  background:#fff;
+  display:inline-block;
+  color:#909f9d;
+  border-radius: 5px 5px 0 0;
+  border: none;
+}
+
+.mat-tab-labels {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-tab-header {
+  background: transparent;
+  margin: 0;
+}
+
+/* Styles for tab labels */
+.mat-tab-label {
+  min-width: 25px !important;
+  background-color: #ffffff;
+  text-align: center!important;
+  font-weight: normal;
+  text-transform: capitalize;
+  color: $text-color;
+  height: auto!important;
+  padding: initial!important;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  min-width: 25px !important;
+  text-align: center!important;
+  font-weight: normal;
+  text-transform: capitalize;
+  color: $black;
+  opacity: 1;
+
+  .mat-tab-label-content {
+    background-color: $silver-30;
+    border-radius: $border-radius;
+  }
+}
+
+/* Styles for the ink bar */
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  height: 0;
+}
+
+.mat-tab-label, .mat-tab-label-content {
+  display: inline-flex!important;
+  flex-direction: column!important;
+  text-align: center;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.mat-tab-icon, .mat-tab-label-text {
+  display: block!important;
+  text-align: center;
+}
+
+.mat-tab-label-text {
+  font-size: 12px;
+}
