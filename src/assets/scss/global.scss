@@ -219,3 +219,7 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
 .mat-tab-label-text {
   font-size: 12px;
 }
+
+.mat-ripple-element {
+  display: none!important;
+}
