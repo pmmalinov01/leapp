@@ -2,12 +2,18 @@
 
 $border-radius: 5px;
 $modal-border-radius: 20px;
+
 $optionbar-height: 60px;
 $commandbar-height: 60px;
 $menubar-width: 240px;
+
 $standard-padding: 20px;
 $modal-padding: 20px;
+
 $form-button-padding: 10px 20px;
+$padding-form-control: 5px 10px;
+$font-size-form-control: 14px;
+$form-control-height: 40px!important;
 
 $icon-button-width: 20px;
 $icon-button-height: 20px;
@@ -17,6 +23,7 @@ $icon-button-height-small: 14px;
 html, body { height: 100%; }
 
 body {
+  position: relative;
   margin: 0;
   overflow: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif;
