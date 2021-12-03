@@ -15,5 +15,6 @@ h4 { color: $text-color; }
 }
 
 .modal-content {
+  padding: $modal-padding;
   border-radius: $modal-border-radius;
 }

@@ -1,33 +1,16 @@
 @import "../../../../assets/scss/mixins/palette";
 @import "../../../../assets/scss/mixins/utility";
 
-h2 {
-  display: block;
-  font-weight: bold;
-  font-size: 16px;
-  color: $text-color;
-  padding: 20px 0 10px;
+.confirm-modal {
+  max-width: 520px;
+  width: 100%;
 }
 
-.form-field {
-  label {
-    display: inline-flex;
-    font-weight: normal;
-    color: $text-color;
-    justify-content: flex-end;
-    justify-self: center;
-    width: 25%;
-    padding-right: 15px;
-  }
-  ng-select {
-    display: inline-flex;
-    width: 75%;
-  }
-  input {
-
-  }
-}
-
+.proxy-length-1 { width: 18%!important; }
+.proxy-length-2 { display: inline-block; width: 4%!important; padding: 0 3px; text-align: center}
+.proxy-length-3 { width: 60%!important; }
+.proxy-length-4 { display: inline-block; width: 3%!important; padding: 0 3px; text-align: center}
+.proxy-length-5 { width: 15%!important; }
 
 .panel{
   animation: fadein .8s;
