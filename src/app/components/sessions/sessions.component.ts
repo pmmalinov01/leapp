@@ -6,6 +6,8 @@ import {HttpClient} from '@angular/common/http';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {globalFilteredSessions} from '../command-bar/command-bar.component';
 
+export const optionBarIds = {};
+
 @Component({
   selector: 'app-session',
   templateUrl: './sessions.component.html',
@@ -13,11 +15,10 @@ import {globalFilteredSessions} from '../command-bar/command-bar.component';
 })
 export class SessionsComponent implements OnInit {
 
-  eGlobalFilteredSessions = globalFilteredSessions;
-
   @ViewChild('filterField', { static: false })
   filterField: ElementRef;
 
+  eGlobalFilteredSessions = globalFilteredSessions;
   // Data for the select
   modalAccounts = [];
   currentSelectedColor;

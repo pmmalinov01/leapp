@@ -1,4 +1,6 @@
+@import "../../../../assets/scss/mixins/utility";
 @import "../../../../assets/scss/mixins/palette";
+@import "../../../../assets/scss/global";
 
 .status-item { font-size: 12px; }
 
@@ -9,4 +11,45 @@ td:nth-child(1) {
   font-size: 16px;
   color: $text-color;
   img { width: 30px; }
+}
+
+.option-bar {
+  padding: $standard-padding;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $white-text-color;
+  height: $commandbar-height;
+  bottom: 0;
+  left: $menubar-width;
+  right: 0;
+  @include box-shadow(3px -1px 5px -3px $text-color);
+  a {
+    display: inline-flex;
+    margin: 0 10px;
+  }
+  .separator {
+    display: inline-flex;
+    width: 1px;
+    height: 20px;
+    background: $silver-dark;
+    margin: 0 10px;
+  }
+}
+
+.start-session {
+  display: inline-flex;
+  text-decoration: none;
+  width: 120px!important;
+  color: $text-color;
+  i {
+    font-size: 30px!important;
+    color: $main-color-light
+  }
+}
+
+.session-name {
+  color: $silver-dark;
+  font-size: 10px;
 }

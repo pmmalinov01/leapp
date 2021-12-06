@@ -1,53 +1,53 @@
-<td (click)="switchCredentials()">
+<td (click)="switchCredentials()" (contextmenu)="openOptionBar(session);">
   <img src="assets/images/{{getSessionTypeIcon(session.type)}}.png" alt="" title="" />
   &nbsp;
   <span class="{{session.status === eSessionStatus.active ? 'strong' : ''}}">{{session.sessionName}}</span>
   &nbsp;
   <i class="fal fa-thumbtack" *ngIf="workspaceService.getWorkspace().pinned.indexOf(session.sessionId) !== -1"></i>
 </td>
-<td (click)="switchCredentials()">
+<td (click)="switchCredentials()" (contextmenu)="openOptionBar(session);">
   <ng-container *ngIf="session.type !== eSessionType.awsIamUser">{{ session | detail }}</ng-container>
 </td>
-<td (click)="switchCredentials()">
+<td (click)="switchCredentials()" (contextmenu)="openOptionBar(session);">
   <span class="badge badge-rounded badge-{{getSessionProviderClass(session.type)}}">{{getSessionProviderLabel(session.type)}}</span>
 </td>
-<td (click)="switchCredentials()">
+<td (click)="switchCredentials()" (contextmenu)="openOptionBar(session);">
   <ng-container *ngIf="session.type !== eSessionType.azure">
   {{getProfileName(getProfileId(session))}}
   <a (click)="copyProfile(getProfileName(getProfileId(session)))"><i class="fal fa-copy"></i></a>
   </ng-container>
 </td>
-<td (click)="switchCredentials()">
+<td (click)="switchCredentials()" (contextmenu)="openOptionBar(session);">
   <span class="badge badge-{{session.status === eSessionStatus.active ? 'black' : 'gray'}}">{{session.region}}</span>
 </td>
-<td (click)="switchCredentials()">
+<td (click)="switchCredentials()" (contextmenu)="openOptionBar(session);">
   <i class="status-item fas fa-circle {{session.status === eSessionStatus.active ? 'active' : 'offline'}}" *ngIf="session.status !== eSessionStatus.pending"></i>
   <i class="status-item far fa-spinner-third fa-spin" *ngIf="session.status === eSessionStatus.pending"></i>
-
-
-
-  <ng-container dropdown placement="right" [autoClose]="true">
-    <a dropdownToggle class="drop-list-container" aria-controls="drop-list">
-      <i class="fa fa-ellipsis-v"></i>
-    </a>
-    <div id="drop-list" *dropdownMenu class="dropdown-menu drop-list dropdown-menu-right" role="menu" aria-labelledby="button-basic">
-      <a (click)="ssmModalOpen(session);" *ngIf="session.type !== eSessionType.azure">SSM Session</a>
-      <a (click)="changeRegionModalOpen(session);">Edit {{session.type === eSessionType.azure ? 'Location' : 'Region'}}</a>
-
-      <a *ngIf="session.type !== eSessionType.azure" (click)="changeProfileModalOpen();">Edit Profile</a>
-
-      <a *ngIf="session.type === eSessionType.awsIamUser && session.status !== eSessionStatus.active" (click)="editSession(session, $event);">Edit account</a>
-      <ng-container *ngIf="(session.type === eSessionType.awsIamRoleFederated || session.type === eSessionType.awsIamRoleChained || session.type === eSessionType.awsSsoRole)">
-        <a (click)="copyCredentials(session, 1, $event);">Copy Account Number</a>
-        <a (click)="copyCredentials(session, 2, $event);">Copy Role ARN</a>
-      </ng-container>
-      <a (click)="deleteSession(session, $event);">Delete Session</a>
-
-    </div>
-  </ng-container>
 </td>
 
+<ng-container *ngIf="eOptionIds[session.sessionId]">
+  <div class="option-bar">
+    <a class="icon-button start-session"><i class="fad fa-play-circle"></i>&nbsp;Start Session</a>
 
+    <div>
+      <a class="icon-button" (click)="changeRegionModalOpen(session);" tooltip="Change Region"><i class="fal fa-globe"></i></a>
+      <a class="icon-button" *ngIf="session.type !== eSessionType.azure" (click)="changeProfileModalOpen();" tooltip="Change Named Profile"><i class="fal fa-user-circle"></i></a>
+      <a class="icon-button" (click)="ssmModalOpen(session);" *ngIf="session.type !== eSessionType.azure" tooltip="Open SSM connection"><i class="fal fa-list"></i></a>
+      <a class="icon-button" *ngIf="session.type === eSessionType.awsIamUser && session.status !== eSessionStatus.active" (click)="editSession(session, $event);" tooltip="Edit Session"><i class="fal fa-list"></i></a>
+
+      <ng-container *ngIf="(session.type === eSessionType.awsIamRoleFederated || session.type === eSessionType.awsIamRoleChained || session.type === eSessionType.awsSsoRole)">
+        <a class="icon-button" (click)="copyCredentials(session, 1, $event);" tooltip="Copy Account Number"><i class="fal fa-copy"></i></a>
+        <a class="icon-button" (click)="copyCredentials(session, 2, $event);" tooltip="Copy Role ARN"><i class="fal fa-copy"></i></a>
+      </ng-container>
+
+      <span class="separator"></span>
+
+      <a class="icon-button" (click)="deleteSession(session, $event);" tooltip="Delete Session"><i class="fal fa-trash"></i></a>
+    </div>
+
+    <div class="session-name">{{session.sessionName}}</div>
+  </div>
+</ng-container>
 
 <ng-template #ssmModalTemplate>
   <div class="modal-header">

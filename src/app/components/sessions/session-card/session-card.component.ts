@@ -18,6 +18,7 @@ import {SessionService} from '../../../services/session.service';
 import {Constants} from '../../../models/constants';
 import {AwsIamUserService} from '../../../services/session/aws/methods/aws-iam-user.service';
 import {LoggingService} from '../../../services/logging.service';
+import { optionBarIds } from '../sessions.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -42,14 +43,16 @@ export class SessionCardComponent implements OnInit {
 
   eSessionType = SessionType;
   eSessionStatus = SessionStatus;
+  eOptionIds = optionBarIds;
 
   modalRef: BsModalRef;
 
   ssmLoading = true;
-  selectedSsmRegion;
-  selectedDefaultRegion;
   openSsm = false;
   firstTimeSsm = true;
+
+  selectedSsmRegion;
+  selectedDefaultRegion;
   awsRegions = [];
   regionOrLocations = [];
   instances = [];
@@ -102,6 +105,11 @@ export class SessionCardComponent implements OnInit {
     }
   }
 
+  openOptionBar(session: Session) {
+    this.clearOptionIds();
+    optionBarIds[session.sessionId] = true;
+  }
+
   /**
    * Start the selected sessions
    */
@@ -133,6 +141,7 @@ export class SessionCardComponent implements OnInit {
       if (status === Constants.confirmed) {
         this.sessionService.delete(session.sessionId).then(_ => {});
         this.logSessionData(session, 'Session Deleted');
+        this.clearOptionIds();
       }
     });
   }
@@ -144,8 +153,9 @@ export class SessionCardComponent implements OnInit {
    * @param event - to remove propagation bubbles
    */
   editSession(session: Session, event) {
+    this.clearOptionIds();
     event.stopPropagation();
-    this.router.navigate(['/managing', 'edit-account'], {queryParams: { sessionId: session.sessionId }}).then(_ => {});
+    // this.router.navigate(['/managing', 'edit-account'], {queryParams: { sessionId: session.sessionId }}).then(_ => {});
   }
 
   /**
@@ -153,6 +163,7 @@ export class SessionCardComponent implements OnInit {
    */
   async copyCredentials(session: Session, type: number, event) {
     event.stopPropagation();
+    this.clearOptionIds();
     try {
       const workspace = this.workspaceService.getWorkspace();
       if (workspace) {
@@ -196,6 +207,7 @@ export class SessionCardComponent implements OnInit {
     this.ssmLoading = false;
     this.firstTimeSsm = true;
     this.selectedSsmRegion = null;
+    this.clearOptionIds();
     this.modalRef = this.modalService.show(this.ssmModalTemplate, { class: 'ssm-modal'});
   }
 
@@ -206,6 +218,7 @@ export class SessionCardComponent implements OnInit {
    */
   changeRegionModalOpen(session) {
     // open the modal
+    this.clearOptionIds();
     this.modalRef = this.modalService.show(this.defaultRegionModalTemplate, { class: 'ssm-modal'});
   }
 
@@ -336,6 +349,7 @@ export class SessionCardComponent implements OnInit {
   }
 
   changeProfileModalOpen() {
+    this.clearOptionIds();
     this.selectedProfile = null;
     this.modalRef = this.modalService.show(this.defaultProfileModalTemplate, { class: 'ssm-modal'});
   }
@@ -407,6 +421,12 @@ export class SessionCardComponent implements OnInit {
         '</ul><br>Removing the sessions will also remove the iamRoleChained sessions associated with it. Do you want to proceed?';
     } else {
       return 'Do you really want to delete this sessions?';
+    }
+  }
+
+  private clearOptionIds() {
+    for (const prop of Object.getOwnPropertyNames(optionBarIds)) {
+      optionBarIds[prop] = false;
     }
   }
 }

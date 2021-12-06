@@ -19,6 +19,7 @@
 }
 
 .sessions {
+  position: relative;
   display: block;
   float: right;
   width: calc(100% - #{$menubar-width});
