@@ -58,7 +58,6 @@
             </div>
 
             <div class="form-group" *ngIf="showProxyAuthentication">
-
               <div class="form-field">
                 <label>Username</label>
                 <input formControlName="proxyUsername" type="text" class="form-control" placeholder="Proxy Username" [value]="proxyUsername" >
@@ -68,85 +67,77 @@
                 <label>Password</label>
                 <input formControlName="proxyPassword" type="password" class="form-control" placeholder="Proxy Password" [value]="proxyPassword" >
               </div>
+            </div>
+          </div>
 
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="mat-tab-icon">terminal</mat-icon>
+          <span class="mat-tab-label-text">IdP Url</span>
+        </ng-template>
+
+        <div class="no-padding no-margin panel">
+          <h2>IdP URL</h2>
+
+          <div class="form-container">
+
+            <div class="form-group">
+              <div class="form-field form-control-input-button max-width">
+                <input formControlName="idpUrl" type="text" class="form-control max-width" placeholder="Add SAML 2.0 IdP URL" [value]="idpUrlValue ? idpUrlValue.url : ''" >
+                <button type="button" (click)="manageIdpUrl(idpUrlValue ? idpUrlValue.id: -1);"><i class="fal {{editingIdpUrl ? 'fa-pencil' : 'fa-plus-circle'}}"></i></button>
+              </div>
             </div>
 
+            <div class="form-group scrollable">
+              <table class="table option-table">
+                <tbody>
+                <ng-container *ngFor="let idpUrl of workspace.idpUrls">
+                  <tr *ngIf="idpUrl">
+                    <td>{{idpUrl.url}}</td>
+                    <td>
+                      <button class="icon-button inline" type="button" (click)="editIdpUrl(idpUrl.id);"><i class="fal fa-pencil"></i></button>
+                      <button class="icon-button inline" type="button" (click)="deleteIdpUrl(idpUrl.id);"><i class="fal fa-trash"></i></button>
+                    </td>
+                  </tr>
+                </ng-container>
+                </tbody>
+              </table>
+            </div>
 
           </div>
-
-          <!--
-          <h2 style="margin-top: 10px;">AWS SSO</h2>
-          <div class="form-group" style="width: 43%; display: inline-block;">
-            <label>Default browser opening</label>
-            <ng-select formControlName="defaultBrowserOpening" bindLabel="type" bindValue="type" [items]="[{type: eConstants.inApp.toString() }, {type: eConstants.inBrowser.toString() }]" [(ngModel)]="selectedBrowserOpening" dropdownPosition="down"></ng-select>
-          </div>
-          -->
-
         </div>
       </mat-tab>
 
+
+
       <mat-tab>
         <ng-template mat-tab-label>
-          <mat-icon class="mat-tab-icon">share</mat-icon>
-          <span class="mat-tab-label-text">IdP Urls</span>
+          <mat-icon class="mat-tab-icon">people</mat-icon>
+          <span class="mat-tab-label-text">Profiles</span>
         </ng-template>
         <div class="no-padding no-margin panel">
-          <h2 style="margin-top: 10px;">IdP URL list</h2>
+          <h2>Named Profiles</h2>
 
-          <div class="form-group" style="width: 100%; display: inline-block; position: relative;">
-            <label>SAML 2.0 IdP URL<span class="danger-text">*</span></label>
-            <input formControlName="idpUrl" type="text" class="form-control adapt" placeholder="Idp Url" [value]="idpUrlValue ? idpUrlValue.url : ''" >
-            <button class="inside-btn" type="button" (click)="manageIdpUrl(idpUrlValue ? idpUrlValue.id: -1);"><i class="far fa-{{editingIdpUrl ? 'edit' : 'plus'}}"></i></button>
+          <div class="form-group">
+            <div class="form-field form-control-input-button max-width">
+              <input formControlName="awsProfile" type="text" class="form-control max-width" placeholder="Add new Named Profile" [value]="awsProfileValue ? awsProfileValue.name : ''" >
+              <button class="button" type="button" (click)="manageAwsProfile(awsProfileValue ? awsProfileValue.id: -1);"><i class="fal {{editingAwsProfile ? 'fa-pencil' : 'fa-plus-circle'}}"></i></button>
+            </div>
           </div>
 
-          <div class="idp-url-wrapper">
-            <table>
-              <thead>
-              <th><label>Url</label></th><th class="text-right"><label>Actions</label></th>
-              </thead>
-              <tbody>
-              <ng-container *ngFor="let idpUrl of workspace.idpUrls">
-                <tr *ngIf="idpUrl">
-                  <td>{{idpUrl.url}}</td>
-                  <td>
-                    <button class="my-btn" type="button" (click)="editIdpUrl(idpUrl.id);"><i class="fa fa-edit"></i></button>
-                    <button class="my-btn" type="button" (click)="deleteIdpUrl(idpUrl.id);"><i class="fa fa-trash"></i></button>
-                  </td>
-                </tr>
-              </ng-container>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="mat-tab-icon">account_box</mat-icon>
-          <span class="mat-tab-label-text">Named Profiles</span>
-        </ng-template>
-        <div class="no-padding no-margin panel">
-          <h2 style="margin-top: 10px;">Named Profiles list</h2>
-
-          <div class="form-group" style="width: 100%; display: inline-block; position: relative;">
-            <label>Named Profile<span class="danger-text">*</span></label>
-            <input formControlName="awsProfile" type="text" class="form-control adapt" placeholder="Profile" [value]="awsProfileValue ? awsProfileValue.name : ''" >
-            <button class="inside-btn" type="button" (click)="manageAwsProfile(awsProfileValue ? awsProfileValue.id: -1);"><i class="far fa-{{editingAwsProfile ? 'edit' : 'plus'}}"></i></button>
-          </div>
-
-          <div class="idp-url-wrapper">
-            <table>
-              <thead>
-              <th><label>Name</label></th><th class="text-right"><label>Actions</label></th>
-              </thead>
+          <div class="form-group">
+            <table class="table option-table">
               <tbody>
               <ng-container *ngFor="let profile of workspace.profiles">
                 <tr *ngIf="profile">
                   <td>{{profile.name}}</td>
                   <td>
                     <ng-container *ngIf="profile.name !== 'default'">
-                      <button class="my-btn" type="button" (click)="editAwsProfile(profile.id);"><i class="fa fa-edit"></i></button>
-                      <button class="my-btn" type="button" (click)="deleteAwsProfile(profile.id);"><i class="fa fa-trash"></i></button>
+                      <button class="icon-button inline" type="button" (click)="editAwsProfile(profile.id);"><i class="fal fa-pencil"></i></button>
+                      <button class="icon-button inline" type="button" (click)="deleteAwsProfile(profile.id);"><i class="fal fa-trash"></i></button>
                     </ng-container>
                   </td>
                 </tr>
@@ -156,6 +147,27 @@
           </div>
         </div>
       </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="mat-tab-icon">extension</mat-icon>
+          <span class="mat-tab-label-text">Integrations</span>
+        </ng-template>
+        <div class="no-padding no-margin panel">
+          <h2>Integrations</h2>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="mat-tab-icon">account_box</mat-icon>
+          <span class="mat-tab-label-text">Account</span>
+        </ng-template>
+        <div class="no-padding no-margin panel">
+          <h2>Account</h2>
+        </div>
+      </mat-tab>
+
     </mat-tab-group>
 
     <button type="button" (click)="saveOptions();" [disabled]="!form.valid">Done</button>

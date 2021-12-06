@@ -18,8 +18,15 @@ form button {
   border: none;
   transition: all 0.3s ease;
   padding: $form-button-padding;
+
   &:hover {
     opacity: 0.6;
+  }
+
+  .rounded-button {
+    border-radius: 50%;
+    background: $silver-dark;
+    color: $white-text-color;
   }
 }
 
@@ -37,6 +44,23 @@ form button {
   &:focus {
     background: $white-text-color;
     border: 1px solid $text-color;
+    color: $text-color;
+  }
+}
+
+.form-control-input-button {
+  display: inline-block;
+  position: relative;
+  .form-control {
+    padding-right: 32px!important;
+  }
+  button {
+    position: absolute;
+    right: -10px;
+    top: 0;
+    outline: none!important;
+    border: none!important;
+    background: none!important;
     color: $text-color;
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Workspace} from '../../../models/workspace';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {AppService, LoggerLevel, ToastLevel} from '../../../services/app.service';
 import {FileService} from '../../../services/file.service';
 import {Router} from '@angular/router';
@@ -14,8 +14,6 @@ import {SessionFactoryService} from '../../../services/session-factory.service';
 import {SessionType} from '../../../models/session-type';
 import {AwsSessionService} from '../../../services/session/aws/aws-session.service';
 import {LoggingService} from '../../../services/logging.service';
-import {AwsSsoRoleSession} from '../../../models/aws-sso-role-session';
-import {AwsSsoIntegration} from "../../../models/aws-sso-integration";
 
 @Component({
   selector: 'app-options-dialog',
@@ -26,6 +24,7 @@ import {AwsSsoIntegration} from "../../../models/aws-sso-integration";
 export class OptionsDialogComponent implements OnInit {
 
   eConstants = Constants;
+
   awsProfileValue: { id: string; name: string };
   idpUrlValue;
   editingIdpUrl: boolean;
@@ -46,7 +45,7 @@ export class OptionsDialogComponent implements OnInit {
   selectedRegion: string;
   selectedBrowserOpening = Constants.inApp.toString();
 
-  public form = new FormGroup({
+  form = new FormGroup({
     idpUrl: new FormControl(''),
     awsProfile: new FormControl(''),
     proxyUrl: new FormControl(''),
@@ -62,7 +61,6 @@ export class OptionsDialogComponent implements OnInit {
 
   /* Simple profile page: shows the Idp Url and the workspace json */
   private sessionService: any;
-  private selectedAwsSsoPortalUrl: string;
 
   constructor(
     private appService: AppService,
@@ -123,11 +121,7 @@ export class OptionsDialogComponent implements OnInit {
       this.workspace.defaultLocation = this.selectedLocation;
       this.workspaceService.updateDefaultLocation(this.workspace.defaultLocation);
 
-      // this.workspace.awsSsoConfiguration.browserOpening = this.selectedBrowserOpening;
-      // this.workspaceService.updateBrowserOpening(this.selectedBrowserOpening);
-
       if (this.checkIfNeedDialogBox()) {
-
         this.appService.confirmDialog('You\'ve set a proxy url: the app must be restarted to update the configuration.', (res) => {
           if (res !== Constants.confirmClosed) {
             this.loggingService.logger('User have set a proxy url: the app must be restarted to update the configuration.', LoggerLevel.info, this);
@@ -135,9 +129,9 @@ export class OptionsDialogComponent implements OnInit {
           }
         });
       } else {
+        this.appService.closeModal();
         this.loggingService.logger('Option saved.', LoggerLevel.info, this, JSON.stringify(this.form.getRawValue(), null, 3));
         this.loggingService.toast('Option saved.', ToastLevel.info, 'Options');
-        this.router.navigate(['/dashboard']).then(_ => {});
       }
     }
   }

@@ -70,6 +70,13 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
 
 .string { font-weight: bold; }
 
+.scrollable {
+  overflow-y: auto;
+}
+
+.inline { display: inline-block; }
+
+.max-width { width: 100%!important; }
 
 .icon-button {
   border: none!important;

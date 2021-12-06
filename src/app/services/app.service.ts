@@ -328,6 +328,11 @@ export class AppService {
     return JSON.parse(jsonPayload);
   }
 
+  closeModal() {
+    // @ts-ignore: Accessing private variable as workaround for missing feature
+    this.modalService.loaders.forEach(loader => loader.instance.hide());
+  }
+
   /**
    * Confirmation dialog popup!
    *
