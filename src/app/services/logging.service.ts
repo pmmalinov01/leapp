@@ -7,7 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import {SnackbarComponent} from "../components/snackbar/snackbar.component";
+import {SnackbarComponent} from '../components/snackbar/snackbar.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class LoggingService {
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'left';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  snackbarRef;
 
   constructor(
     private matSnackBar: MatSnackBar,
@@ -83,9 +84,12 @@ export class LoggingService {
   }
 
   private openSnackBar(message: string, title: string, className: string) {
-    this.matSnackBar.openFromComponent(SnackbarComponent, {
+    if(this.snackbarRef) {
+      this.snackbarRef.dismiss();
+    }
+    this.snackbarRef = this.matSnackBar.openFromComponent(SnackbarComponent, {
       data: { html: '<strong>' + title + '</strong><br/>' + message, className },
-      duration: className === 'toast-error' ? 3600 * 1000 : 3000,
+      duration: className === 'toast-error' ? 0 : 3000,
       panelClass: [className],
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,

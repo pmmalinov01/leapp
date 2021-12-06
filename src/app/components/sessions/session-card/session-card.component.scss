@@ -1,10 +1,9 @@
 @import "../../../../assets/scss/mixins/palette";
 
-.status-item {}
+.status-item { font-size: 12px; }
 
-.active { background: $success; }
-
-.offline { background: $silver-25; }
+.active { color: $success!important; }
+.offline { color: $silver-25!important; }
 
 td:nth-child(1) {
   font-size: 16px;
