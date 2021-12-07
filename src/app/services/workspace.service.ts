@@ -9,6 +9,8 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import * as uuid from 'uuid';
 import {AwsSsoIntegration} from '../models/aws-sso-integration';
 import {AwsSsoRoleSession} from '../models/aws-sso-role-session';
+import Folder from '../models/folder';
+import Segment from '../models/Segment';
 
 @Injectable({
   providedIn: 'root'
@@ -231,6 +233,28 @@ export class WorkspaceService {
     this.persistWorkspace(workspace);
   }
 
+  getFolders() {
+    const workspace = this.getWorkspace();
+    return workspace.folders;
+  }
+
+  setFolders(folders: Folder[]) {
+    const workspace = this.getWorkspace();
+    workspace.folders = folders;
+    this.persistWorkspace(workspace);
+  }
+
+  getSegments() {
+    const workspace = this.getWorkspace();
+    return workspace.segments;
+  }
+
+  setSegments(segments: Segment[]) {
+    const workspace = this.getWorkspace();
+    workspace.segments = segments;
+    this.persistWorkspace(workspace);
+  }
+
   private getPersistedSessions(): Session[] {
     const workspace = this.getWorkspace();
     return workspace.sessions;
@@ -241,4 +265,6 @@ export class WorkspaceService {
     workspace.sessions = sessions;
     this.persistWorkspace(workspace);
   }
+
+
 }

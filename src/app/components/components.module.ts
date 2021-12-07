@@ -26,6 +26,8 @@ import {OptionsDialogComponent} from './dialogs/options-dialog/options-dialog.co
 import { CreateDialogComponent } from './dialogs/create-dialog/create-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 import {MatMenuModule} from "@angular/material/menu";
+import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import {MatMenuModule} from "@angular/material/menu";
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatListModule,
+    MatExpansionModule
   ],
   exports: [ConfirmationDialogComponent, InputDialogComponent, CommandBarComponent, SideBarComponent, SessionsComponent]
 })

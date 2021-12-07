@@ -1,1 +1,46 @@
-<p>side-bar works!</p>
+<mat-list>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon class="material-icons-outlined">list</mat-icon>
+    <div mat-line>All Sessions</div>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon class="material-icons-outlined">push_pin</mat-icon>
+    <div mat-line>Pinned</div>
+  </mat-list-item>
+
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div mat-subheader>Folders</div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list-item *ngFor="let folder of folders">
+        <mat-icon mat-list-icon class="material-icons-outlined">folder</mat-icon>
+        <div mat-line>{{folder.name}}</div>
+      </mat-list-item>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div mat-subheader>Segments</div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list-item *ngFor="let segment of segments">
+        <mat-icon mat-list-icon class="material-icons-outlined">label_outline</mat-icon>
+        <div mat-line>{{segment.name}}</div>
+      </mat-list-item>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</mat-list>

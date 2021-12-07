@@ -1,29 +1,31 @@
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <img src="assets/images/{{getSessionTypeIcon(session.type)}}.png" alt="" title="" />
   &nbsp;
   <span class="{{session.status === eSessionStatus.active ? 'strong' : ''}}">{{session.sessionName}}</span>
   &nbsp;
   <i class="fal fa-thumbtack" *ngIf="workspaceService.getWorkspace().pinned.indexOf(session.sessionId) !== -1"></i>
 </td>
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <ng-container *ngIf="session.type !== eSessionType.awsIamUser">{{ session | detail }}</ng-container>
 </td>
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <span class="badge badge-rounded badge-{{getSessionProviderClass(session.type)}}">{{getSessionProviderLabel(session.type)}}</span>
 </td>
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <ng-container *ngIf="session.type !== eSessionType.azure">
   {{getProfileName(getProfileId(session))}}
   <a (click)="copyProfile(getProfileName(getProfileId(session)))"><i class="fal fa-copy"></i></a>
   </ng-container>
 </td>
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <span class="badge badge-{{session.status === eSessionStatus.active ? 'black' : 'gray'}}">{{session.region}}</span>
 </td>
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <i class="status-item fas fa-circle {{session.status === eSessionStatus.active ? 'active' : 'offline'}}" *ngIf="session.status !== eSessionStatus.pending"></i>
   <i class="status-item far fa-spinner-third fa-spin" *ngIf="session.status === eSessionStatus.pending"></i>
 </td>
+
+
 
 <div [matMenuTriggerFor]="menu" [style.position]="'absolute'" [style.left.px]="menuX" [style.top.px]="menuY"></div>
 <mat-menu #menu>
@@ -97,7 +99,7 @@
       <a class="icon-button" (click)="deleteSession(session, $event);" tooltip="Delete Session"><i class="fal fa-trash"></i></a>
     </div>
 
-    <div class="session-name"><strong>{{session.sessionName}}</strong><br></div>
+    <div class="session-name"><strong>{{session.sessionName}}</strong><br>{{session | detail}}</div>
   </div>
 </ng-container>
 

@@ -13,6 +13,8 @@ td:nth-child(1) {
   img { width: 30px; }
 }
 
+a { color: $text-color; }
+
 .option-bar {
   padding: $standard-padding;
   position: fixed;
@@ -52,4 +54,18 @@ td:nth-child(1) {
 .session-name {
   color: $silver-dark;
   font-size: 10px;
+}
+
+td.selected {
+  background: $dark-sky-blue;
+  color: $white-text-color;
+  * {
+    color: $white-text-color;
+  }
+  img {
+    filter: brightness(0) invert(1);
+  }
+}
+td.active {
+  background: $focused-element;
 }

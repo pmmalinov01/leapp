@@ -15,7 +15,7 @@
   width: $menubar-width;
   height: calc(100vh - #{$commandbar-height});
   border-right: 1px solid $silver-75;
-  padding: $standard-padding;
+  overflow-y: auto;
 }
 
 .sessions {
