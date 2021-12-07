@@ -14,7 +14,7 @@
 <td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
   <ng-container *ngIf="session.type !== eSessionType.azure">
   {{getProfileName(getProfileId(session))}}
-  <a (click)="copyProfile(getProfileName(getProfileId(session)))"><i class="fal fa-copy"></i></a>
+  <a (click)="copyProfile(getProfileName(getProfileId(session)))" tooltip="Copy Profile Name"><i class="fal fa-copy"></i></a>
   </ng-container>
 </td>
 <td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">

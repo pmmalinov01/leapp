@@ -33,8 +33,6 @@ export enum ToastLevel {
 })
 export class AppService {
 
-  profileOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   stsEndpointsPerRegion = new Map([
     ['af-south-1', 'https://sts.af-south-1.amazonaws.com'],
     ['ap-east-1', 'https://sts.ap-east-1.amazonaws.com'],
@@ -62,6 +60,9 @@ export class AppService {
     ['us-west-1', 'https://sts.us-west-1.amazonaws.com'],
     ['us-west-2', 'https://sts.us-west-2.amazonaws.com']
   ]);
+
+  /* Is used to detect if application is in compact or full mode */
+  private _compactMode: boolean;
 
   /* This service is defined to provide different app wide methods as utilities */
   private newWin: any;

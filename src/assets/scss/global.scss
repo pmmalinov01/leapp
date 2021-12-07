@@ -21,6 +21,8 @@ $icon-button-height: 20px;
 $icon-button-width-small: 14px;
 $icon-button-height-small: 14px;
 
+$compact-fixed-width: 560px;
+
 html, body { height: 100%; }
 
 body {
@@ -282,9 +284,29 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
   box-shadow: none!important;
 }
 .mat-subheader {
-  padding: 10px 16px;
-  align-items: flex-end;
+  display: flex;
+  box-sizing: border-box;
+  padding: 12px 16px!important;
+  align-items: flex-end!important;
 }
+
 .mat-expansion-panel-body {
   margin: 0 -24px;
+}
+.mat-content {
+  justify-content: space-between;
+}
+.mat-expansion-panel-header-description {
+  display: flex;
+  margin-right: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.compact { .left { width: 130px!important; border-bottom: 1px solid $silver-75; } }
+.compact { .right { width: calc(100% - 130px)!important; } }
+.compact {
+  .search-bar {
+    width: 200px!important;
+  }
 }

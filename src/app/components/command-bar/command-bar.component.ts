@@ -14,6 +14,7 @@ interface GlobalFilters {
 }
 
 export const globalFilteredSessions = new BehaviorSubject<Session[]>([]);
+export const compactMode = new BehaviorSubject<boolean>(false);
 
 @Component({
   selector: 'app-command-bar',
@@ -27,7 +28,11 @@ export class CommandBarComponent implements OnInit {
     tags: new FormControl([])
   });
 
-  constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService) { }
+  private _compactMode: boolean;
+
+  constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService) {
+    this._compactMode = false;
+  }
 
   ngOnInit(): void {
 
@@ -52,5 +57,10 @@ export class CommandBarComponent implements OnInit {
 
   showEditDialog() {
     this.bsModalService.show(EditDialogComponent, { animated: false, class: 'confirm-modal'});
+  }
+
+  toggleCompactMode() {
+    this._compactMode = !this._compactMode;
+    compactMode.next(this._compactMode);
   }
 }

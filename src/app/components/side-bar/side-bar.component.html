@@ -16,6 +16,9 @@
         <mat-panel-title>
           <div mat-subheader>Folders</div>
         </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon class="material-icons-outlined" (click)="addFolder($event);">control_point</mat-icon>
+        </mat-panel-description>
       </mat-expansion-panel-header>
 
       <mat-list-item *ngFor="let folder of folders">
@@ -33,6 +36,9 @@
         <mat-panel-title>
           <div mat-subheader>Segments</div>
         </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon class="material-icons-outlined" (click)="addSegment($event);">control_point</mat-icon>
+        </mat-panel-description>
       </mat-expansion-panel-header>
 
       <mat-list-item *ngFor="let segment of segments">

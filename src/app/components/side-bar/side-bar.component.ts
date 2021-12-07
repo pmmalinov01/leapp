@@ -37,4 +37,11 @@ export class SideBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addFolder(event) {
+    event.stopPropagation();
+  }
+
+  addSegment(event) {
+    event.stopPropagation();
+  }
 }
