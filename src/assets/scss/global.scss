@@ -2,6 +2,7 @@
 
 $border-radius: 5px;
 $modal-border-radius: 20px;
+$context-menu-border-radius: 20px;
 
 $optionbar-height: 60px;
 $commandbar-height: 60px;
@@ -77,6 +78,13 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
 .inline { display: inline-block; }
 
 .max-width { width: 100%!important; }
+
+.divider {
+  width: 100%;
+  display: block;
+  height: 1px;
+  background: $silver-50;
+}
 
 .icon-button {
   border: none!important;

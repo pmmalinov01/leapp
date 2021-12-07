@@ -109,3 +109,15 @@ form button {
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
   background: $silver-dark;
 }
+
+.mat-menu-panel {
+  width: 300px;
+  min-width: 300px;
+  max-width: 500px;
+  border-radius: $context-menu-border-radius;
+
+  .mat-menu-item {
+    line-height: 40px;
+    height: 40px;
+  }
+}

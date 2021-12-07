@@ -38,7 +38,7 @@ td:nth-child(1) {
   }
 }
 
-.start-session {
+.start-session, .stop-session {
   display: inline-flex;
   text-decoration: none;
   width: 120px!important;

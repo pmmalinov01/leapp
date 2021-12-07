@@ -25,6 +25,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import {OptionsDialogComponent} from './dialogs/options-dialog/options-dialog.component';
 import { CreateDialogComponent } from './dialogs/create-dialog/create-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component
     MatTabsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   exports: [ConfirmationDialogComponent, InputDialogComponent, CommandBarComponent, SideBarComponent, SessionsComponent]
 })
