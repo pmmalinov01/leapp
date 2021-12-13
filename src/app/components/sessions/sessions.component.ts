@@ -1,10 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WorkspaceService} from '../../services/workspace.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../services/app.service';
 import {HttpClient} from '@angular/common/http';
 import {BsModalService} from 'ngx-bootstrap/modal';
-import {globalFilteredSessions} from '../command-bar/command-bar.component';
+import {compactMode, globalFilteredSessions} from '../command-bar/command-bar.component';
+import {Session} from '../../models/session';
+import {Observable} from 'rxjs';
 
 export const optionBarIds = {};
 
@@ -15,10 +17,9 @@ export const optionBarIds = {};
 })
 export class SessionsComponent implements OnInit {
 
-  @ViewChild('filterField', { static: false })
-  filterField: ElementRef;
+  eGlobalFilteredSessions: Session[];
+  eCompactMode: boolean;
 
-  eGlobalFilteredSessions = globalFilteredSessions;
   // Data for the select
   modalAccounts = [];
   currentSelectedColor;
@@ -29,11 +30,8 @@ export class SessionsComponent implements OnInit {
   ssmRegions = [];
   instances = [];
 
-  // Connection retries
-  allSessions;
-  showOnly = 'ALL';
 
-  workspace;
+  showOnly = 'ALL';
 
   constructor(
     private router: Router,
@@ -42,7 +40,14 @@ export class SessionsComponent implements OnInit {
     private httpClient: HttpClient,
     private modalService: BsModalService,
     private appService: AppService
-  ) {}
+  ) {
+    globalFilteredSessions.subscribe(value => {
+      this.eGlobalFilteredSessions = value;
+    });
+    compactMode.subscribe(value => {
+      this.eCompactMode = value;
+    });
+  }
 
   ngOnInit() {
     // Set regions for ssm

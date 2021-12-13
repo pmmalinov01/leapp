@@ -17,7 +17,7 @@
   <a (click)="copyProfile(getProfileName(getProfileId(session)))" tooltip="Copy Profile Name"><i class="fal fa-copy"></i></a>
   </ng-container>
 </td>
-<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
+<td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}" *ngIf="!compactMode">
   <span class="badge badge-{{session.status === eSessionStatus.active ? 'black' : 'gray'}}">{{session.region}}</span>
 </td>
 <td (dblclick)="switchCredentials()" (click)="openOptionBar(session);" (contextmenu)="openContextMenu($event, session)" class="{{eOptionIds[session.sessionId] ? 'selected' : (session.status !== eSessionStatus.inactive ? 'active' : '')}}">
@@ -66,10 +66,21 @@
     <i class="fal fa-pencil"></i>&nbsp;
     <span>Edit Session</span>
   </button>
+
+  <ng-container *ngIf="workspaceService.getWorkspace().pinned.indexOf(session.sessionId) === -1">
   <button mat-menu-item (click)="pinSession(session, $event);">
-    <i class="fal fa-thumbtack"></i>&nbsp;
-    <span>Pin Session</span>
+      <i class="fal fa-thumbtack"></i>&nbsp;
+      <span>Pin Session</span>
   </button>
+  </ng-container>
+
+  <ng-container *ngIf="workspaceService.getWorkspace().pinned.indexOf(session.sessionId) !== -1">
+  <button mat-menu-item (click)="unpinSession(session, $event);">
+      <i class="fal fa-thumbtack"></i>&nbsp;
+      <span>Unpin Session</span>
+  </button>
+  </ng-container>
+
   <button mat-menu-item (click)="deleteSession(session, $event);">
     <i class="fal fa-trash"></i>&nbsp;
     <span>Delete Session</span>

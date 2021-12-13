@@ -33,6 +33,9 @@ export class SessionCardComponent implements OnInit {
   @Input()
   session!: Session;
 
+  @Input()
+  compactMode!: boolean;
+
   @ViewChild('ssmModalTemplate', { static: false })
   ssmModalTemplate: TemplateRef<any>;
 
@@ -421,6 +424,13 @@ export class SessionCardComponent implements OnInit {
   pinSession(session: Session, event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
+    this.workspaceService.pinSession(session);
+  }
+
+  unpinSession(session: Session, event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.workspaceService.unpinSession(session);
   }
 
   clearOptionIds() {
@@ -429,12 +439,14 @@ export class SessionCardComponent implements OnInit {
     }
   }
 
-  openAmazonConsole($event: MouseEvent, session: Session) {
-
+  openAmazonConsole(event: MouseEvent, session: Session) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
-  openTerminal($event: MouseEvent, session: Session) {
-
+  openTerminal(event: MouseEvent, session: Session) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   private logSessionData(session: Session, message: string): void {

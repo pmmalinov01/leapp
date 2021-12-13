@@ -7,12 +7,6 @@
 .active { color: $success!important; }
 .offline { color: $silver-25!important; }
 
-td:nth-child(1) {
-  font-size: 16px;
-  color: $text-color;
-  img { width: 30px; }
-}
-
 a { color: $text-color; }
 
 .option-bar {
@@ -26,6 +20,7 @@ a { color: $text-color; }
   bottom: 0;
   left: $menubar-width;
   right: 0;
+  z-index: 1;
   @include box-shadow(3px -1px 5px -3px $text-color);
   a {
     display: inline-flex;
@@ -69,3 +64,42 @@ td.selected {
 td.active {
   background: $focused-element;
 }
+td:nth-child(1) {
+  font-size: 16px;
+  color: $text-color;
+  img { width: 30px; }
+}
+
+::ng-deep {
+  .compact th { z-index: 1; }
+
+  .compact th,
+  .compact td:nth-child(1),
+  .compact td:nth-child(2),
+  .compact td:nth-child(4) {
+    font-size: 12px!important;
+
+    span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block;
+      width: 96px;
+      font-weight: bold;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  .compact th:nth-child(1) { width: 162px; }
+  .compact th:nth-child(4) { width: 75px; }
+  .compact th:nth-child(5) { width: 50px; }
+
+  .compact .option-bar {
+    left: 0;
+    .start-session {
+      width: 50px!important;
+    }
+  }
+}
+

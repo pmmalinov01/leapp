@@ -1,16 +1,16 @@
 <table class="table table-account-cards">
   <thead>
-    <tr>
+    <tr class="{{eCompactMode ? 'compact' : ''}}">
       <th>Session</th>
       <th>Role</th>
       <th>Provider</th>
-      <th>Named Profile</th>
-      <th>Region</th>
+      <th>Named P{{eCompactMode ? '' : 'rofile'}}</th>
+      <th *ngIf="!eCompactMode">Region</th>
       <th><span class="vertical-rule"></span>&nbsp;<i class="fal fa-th-list"></i></th>
     </tr>
   </thead>
   <tbody>
-    <tr class="active" app-session-card [session]="session" *ngFor="let session of workspaceService.sessions$ | async | filtering:true"></tr>
-    <tr app-session-card [session]="session" *ngFor="let session of workspaceService.sessions$ | async | filtering:false | ordering"></tr>
+    <tr class="active {{eCompactMode ? 'compact' : ''}}" app-session-card [compactMode]="eCompactMode" [session]="session" *ngFor="let session of eGlobalFilteredSessions | filtering:true"></tr>
+    <tr class="{{eCompactMode ? 'compact' : ''}}" app-session-card [compactMode]="eCompactMode" [session]="session" *ngFor="let session of eGlobalFilteredSessions | filtering:false | ordering"></tr>
   </tbody>
 </table>

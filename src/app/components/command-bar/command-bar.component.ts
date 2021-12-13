@@ -32,17 +32,18 @@ export class CommandBarComponent implements OnInit {
 
   constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService) {
     this._compactMode = false;
+    globalFilteredSessions.next(this.workspaceService.sessions);
   }
 
   ngOnInit(): void {
 
     this.filterForm.valueChanges.subscribe((values: GlobalFilters) => {
-      globalFilteredSessions.next(this.workspaceService.sessions.filter(session => {
-        if(values.search === '') {
-          return session;
-        }
-        return session.sessionName.toLowerCase().indexOf(values.search.toLowerCase()) > -1;
-      }));
+      console.log(values);
+      if(values.search === '') {
+        return globalFilteredSessions.next(this.workspaceService.sessions);
+      } else {
+        globalFilteredSessions.next(this.workspaceService.sessions.filter(session => session.sessionName.toLowerCase().indexOf(values.search.toLowerCase()) > -1));
+      }
     });
 
   }

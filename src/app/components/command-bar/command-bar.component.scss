@@ -1,7 +1,5 @@
 @import "../../../assets/scss/global";
 
-$search-bar-width: 400px;
-
 .left {
   float: left;
   width: $menubar-width;
@@ -10,16 +8,22 @@ $search-bar-width: 400px;
   border-right: 1px solid $silver-75;
 }
 .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   float: right;
   width: calc(100% - #{$menubar-width});
   height: $commandbar-height;
   padding: $standard-padding;
   border-bottom: 1px solid $silver-75;
 
-  display: flex;
-  column-gap: 2em;
-  justify-content: flex-start;
-  align-items: center;
+  form {
+    display: flex;
+    column-gap: 2em;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
 .search-bar {
