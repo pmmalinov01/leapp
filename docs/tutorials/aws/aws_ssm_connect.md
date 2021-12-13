@@ -32,7 +32,7 @@ After selecting the region if one or more instances are available you can SSM in
 
 ![](../../../images/tutorials/aws_ssm_connect/AWS_SSM_CONNECT-4.png)
 
-In case you have to manage many sessions you can always use the general **search bar** to filter the specific session you need.
+In case you have to manage many sessions you can always use the general **searchFilter bar** to filter the specific session you need.
 
 ![](../../../images/tutorials/aws_ssm_connect/AWS_SSM_CONNECT-5.png)
 

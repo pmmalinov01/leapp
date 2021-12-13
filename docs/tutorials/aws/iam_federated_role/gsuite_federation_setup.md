@@ -44,7 +44,7 @@ Click on the “Add apps” selector in the menu bar, then "Search app" like in 
 
 ![](../../../images/tutorials/aws/iam_federated_role/G_SUITE_FEDERATION_SETUP-7.png)
 
-Then Search for "Amazon Web Services", wait for search to complete then select the one in figure, being careful to check that is a "Web SAML":
+Then Search for "Amazon Web Services", wait for searchFilter to complete then select the one in figure, being careful to check that is a "Web SAML":
 
 ![](../../../../images/tutorials/aws/iam_federated_role/G_SUITE_FEDERATION_SETUP-8.png)
 

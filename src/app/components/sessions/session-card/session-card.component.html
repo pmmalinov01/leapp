@@ -91,8 +91,8 @@
 
 <ng-container *ngIf="eOptionIds[session.sessionId]">
   <div class="option-bar" (click)="clearOptionIds();">
-    <a class="icon-button start-session" (click)="startSession();" *ngIf="session.status === eSessionStatus.inactive"><i class="fad fa-play-circle"></i>&nbsp;Start Session</a>
-    <a class="icon-button stop-session" (click)="stopSession();" *ngIf="session.status === eSessionStatus.active"><i class="fad fa-stop-circle"></i>&nbsp;Stop Session</a>
+    <a class="icon-button start-session" (click)="startSession();" *ngIf="session.status === eSessionStatus.inactive"><i class="fad fa-play-circle"></i>{{compactMode ? '' : '&nbsp;Start Session'}}</a>
+    <a class="icon-button stop-session" (click)="stopSession();" *ngIf="session.status === eSessionStatus.active"><i class="fad fa-stop-circle"></i>{{compactMode ? '' : '&nbsp;Stop Session'}}</a>
     <div>
       <a class="icon-button" (click)="changeRegionModalOpen($event, session);" tooltip="Change Region"><i class="fal fa-globe"></i></a>
       <a class="icon-button" *ngIf="session.type !== eSessionType.azure" (click)="changeProfileModalOpen($event);" tooltip="Change Named Profile"><i class="fal fa-user-circle"></i></a>
@@ -130,7 +130,7 @@
       <div class="list-of-ssm" *ngIf="!ssmLoading">
         <ng-container *ngIf="!ssmLoading && !firstTimeSsm">
           <b>Select an EC2 Instance:</b><br>
-          <input class="form-control" type="text" placeholder="search by..." (keyup)="searchSSMInstance($event)" />
+          <input class="form-control" type="text" placeholder="searchFilter by..." (keyup)="searchSSMInstance($event)" />
         </ng-container>
 
         <ul class="ssm-ul" *ngIf="instances.length > 0">

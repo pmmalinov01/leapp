@@ -6,6 +6,7 @@ $context-menu-border-radius: 20px;
 
 $optionbar-height: 60px;
 $commandbar-height: 60px;
+$commandbar-extended-height: 110px;
 $menubar-width: 240px;
 $search-bar-width: 400px;
 
@@ -13,6 +14,7 @@ $standard-padding: 20px;
 $modal-padding: 20px;
 
 $form-button-padding: 10px 20px;
+$toggle-button-padding: 5px 10px;
 $padding-form-control: 5px 10px;
 $font-size-form-control: 14px;
 $form-control-height: 40px!important;
@@ -77,6 +79,8 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
 .scrollable {
   overflow-y: auto;
 }
+
+.hidden { visibility: hidden; display: inline-block; margin: 0; padding: 0; width: 0; height: 0; }
 
 .inline { display: inline-block; }
 

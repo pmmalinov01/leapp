@@ -2,32 +2,18 @@
 @import "mixins/palette";
 @import "global";
 
+form {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
 form h2 {
   display: block;
   font-weight: bold;
   font-size: 16px!important;
   color: $main-color;
   padding: 20px 0 10px;
-}
-
-form button {
-  background: $black;
-  border-radius: $border-radius;
-  color: $white-text-color;
-  outline: none;
-  border: none;
-  transition: all 0.3s ease;
-  padding: $form-button-padding;
-
-  &:hover {
-    opacity: 0.6;
-  }
-
-  .rounded-button {
-    border-radius: 50%;
-    background: $silver-dark;
-    color: $white-text-color;
-  }
 }
 
 .form-control {
@@ -99,6 +85,37 @@ form button {
   }
 }
 
+form button, .btn-control {
+  background: $black;
+  border-radius: $border-radius;
+  color: $white-text-color;
+  outline: none;
+  border: none;
+  transition: all 0.3s ease;
+  padding: $form-button-padding;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  .rounded-button {
+    border-radius: 50%;
+    background: $silver-dark;
+    color: $white-text-color;
+  }
+
+  &.toggle-button {
+    background: $white-text-color;
+    color: $text-color;
+    padding: $toggle-button-padding;
+    border: 1px solid $silver-50;
+
+    &.toggled {
+      background: $silver-25;
+    }
+  }
+}
+
 .mat-checkbox-layout {
   width: auto!important;
 }
@@ -114,6 +131,8 @@ form button {
   width: 300px;
   min-width: 300px;
   max-width: 500px;
+  margin-top: 10px;
+  border: 1px solid $silver-75;
   border-radius: $context-menu-border-radius;
 
   .mat-menu-item {
