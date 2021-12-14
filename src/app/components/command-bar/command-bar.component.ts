@@ -7,12 +7,16 @@ import {WorkspaceService} from '../../services/workspace.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 import {Session} from '../../models/session';
+import {AppService} from "../../services/app.service";
 
 interface GlobalFilters {
   searchFilter: string;
   dateFilter: boolean;
   providerFilter: {name: string; value: boolean}[];
   profileFilter: {name: string; value: boolean}[];
+  regionFilter: {name: string; value: boolean}[];
+  integrationFilter: {name: string; value: boolean}[];
+  typeFilter: {category: string; name: string; value: boolean}[];
   tags: string[];
 }
 
@@ -31,16 +35,24 @@ export class CommandBarComponent implements OnInit {
     dateFilter: new FormControl(true),
     providerFilter: new FormControl([]),
     profileFilter: new FormControl([]),
+    regionFilter: new FormControl([]),
+    integrationFilter: new FormControl([]),
+    typeFilter: new FormControl([]),
     tags: new FormControl([])
   });
 
   providers: {name: string; value: boolean}[];
   profiles: {id: string; name: string; value: boolean}[];
+  integrations: any[];
+  types: {category: string; name: string; value: boolean}[];
+  regions: {name: string; value: boolean}[];
 
   filterExtended: boolean;
   compactMode: boolean;
 
-  constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService) {
+
+
+  constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService, private appService: AppService) {
     this.filterExtended = false;
     this.compactMode = false;
 
@@ -51,9 +63,19 @@ export class CommandBarComponent implements OnInit {
       { name: 'Microsoft Azure', value: false }
     ];
 
-    this.profiles = this.workspaceService.getProfiles().map(element => {
-      return { name: element.name, id: element.id, value: false };
-    });
+    this.integrations = [];
+
+    this.types = [
+      { category: 'Amazon AWS', name: 'IAM Role Federated', value: false },
+      { category: 'Amazon AWS', name: 'IAM User', value: false },
+      { category: 'Amazon AWS', name: 'IAM Role Chained', value: false },
+      { category: 'Amazon AWS', name: 'IAM Single Sign-On', value: false },
+      { category: 'Microsoft Azure', name: 'Azure Subscription', value: false }
+    ];
+
+    this.profiles = this.workspaceService.getProfiles().map(element => ({ name: element.name, id: element.id, value: false }));
+
+    this.regions = this.appService.getRegions().map(element => ({ name: element.region, value: false }));
   }
 
   ngOnInit(): void {

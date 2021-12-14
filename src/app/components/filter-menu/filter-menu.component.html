@@ -6,10 +6,23 @@
     <div class="clear"></div>
   </div>
   <div class="filter-menu" (click)="$event.preventDefault(); $event.stopPropagation();">
-    <ng-container *ngFor="let element of data">
-      <ng-container *ngIf="element.show">
-        <mat-checkbox (click)="$event.stopPropagation();" (change)="element.value = $event.checked; updateValue($event, data, form);" checked="{{element.value ? 'checked' : ''}}"></mat-checkbox><span>{{element.name}}</span>
-        <br>
+    <ng-container *ngIf="!categories || categories.length === 0">
+      <ng-container *ngFor="let element of data">
+        <ng-container *ngIf="element.show">
+          <mat-checkbox (click)="$event.stopPropagation();" (change)="element.value = $event.checked; updateValue($event, data, form);" checked="{{element.value ? 'checked' : ''}}"></mat-checkbox><span>{{element.name}}</span>
+          <br>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="categories && categories.length > 0">
+      <ng-container *ngFor="let category of categories">
+        <small>{{category}}</small><br>
+        <ng-container *ngFor="let element of data">
+          <ng-container *ngIf="element.show && element.category === category">
+            <mat-checkbox (click)="$event.stopPropagation();" (change)="element.value = $event.checked; updateValue($event, data, form);" checked="{{element.value ? 'checked' : ''}}"></mat-checkbox><span>{{element.name}}</span>
+            <br>
+          </ng-container>
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>

@@ -22,7 +22,7 @@ export class FilterMenuComponent implements OnInit {
   icon: string;
 
   @Input()
-  data: { id?: string; name: string; value: boolean; show?: boolean }[];
+  data: { id?: string; category?: string; name: string; value: boolean; show?: boolean }[];
 
   @Input()
   form: FormGroup;
@@ -32,6 +32,9 @@ export class FilterMenuComponent implements OnInit {
 
   @Input()
   searchable: boolean;
+
+  @Input()
+  categories: string[];
 
   constructor() {
     this.searchable = false;
@@ -44,8 +47,8 @@ export class FilterMenuComponent implements OnInit {
     });
   }
 
-  updateValue(event: any, data: { id?: string; name: string; value: boolean }[], form: FormGroup) {
-    data = data.map(o => ({ id: o.id, name: o.name, value: o.value }));
+  updateValue(event: any, data: { id?: string; category?: string; name: string; value: boolean; show?: boolean }[], form: FormGroup) {
+    data = data.map(o => ({ id: o.id, name: o.name, value: o.value, category: o.category }));
     form.get(this.control).setValue(data);
   }
 
@@ -57,7 +60,7 @@ export class FilterMenuComponent implements OnInit {
     });
   }
 
-  applyCallback(event: MouseEvent, data: { id?: string; name: string; value: boolean; show?: boolean }[], form: FormGroup) {
+  applyCallback(event: MouseEvent, data: { id?: string; category?: string; name: string; value: boolean; show?: boolean }[], form: FormGroup) {
     if(this.callback) {
       this.callback(event, data, form);
     }
