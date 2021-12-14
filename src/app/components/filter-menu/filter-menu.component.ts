@@ -53,7 +53,6 @@ export class FilterMenuComponent implements OnInit {
   }
 
   searchContent(event: any) {
-    console.log(event.target.value);
     this.data = this.data.map(o => {
       o.show = (o.name.toLowerCase().indexOf(event.target.value) > -1);
       return o;
@@ -64,5 +63,24 @@ export class FilterMenuComponent implements OnInit {
     if(this.callback) {
       this.callback(event, data, form);
     }
+  }
+
+  dataActive() {
+    return this.data.filter(d => d.value).length > 0;
+  }
+
+  dataLabel() {
+    const result = this.data.filter(d => d.value).map(d => d.name);
+    return result.length > 0 ? result.join(', ') : this.name;
+  }
+
+  resetData(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.data = this.data.map(d => {
+      d.value = false;
+      return d;
+    });
   }
 }
