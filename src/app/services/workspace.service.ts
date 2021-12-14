@@ -272,6 +272,11 @@ export class WorkspaceService {
     }
   }
 
+  getProfiles() {
+    const workspace = this.getWorkspace();
+    return workspace.profiles;
+  }
+
   private getPersistedSessions(): Session[] {
     const workspace = this.getWorkspace();
     return workspace.sessions;
@@ -282,7 +287,4 @@ export class WorkspaceService {
     workspace.sessions = sessions;
     this.persistWorkspace(workspace);
   }
-
-
-
 }

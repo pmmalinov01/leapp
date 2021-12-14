@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {OptionsDialogComponent} from '../dialogs/options-dialog/options-dialog.component';
 import {CreateDialogComponent} from '../dialogs/create-dialog/create-dialog.component';
@@ -7,12 +7,12 @@ import {WorkspaceService} from '../../services/workspace.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 import {Session} from '../../models/session';
-import {MatMenuTrigger} from "@angular/material/menu";
 
 interface GlobalFilters {
   searchFilter: string;
   dateFilter: boolean;
   providerFilter: {name: string; value: boolean}[];
+  profileFilter: {name: string; value: boolean}[];
   tags: string[];
 }
 
@@ -26,24 +26,16 @@ export const compactMode = new BehaviorSubject<boolean>(false);
 })
 export class CommandBarComponent implements OnInit {
 
-  @ViewChild(MatMenuTrigger)
-  trigger: MatMenuTrigger;
-
   filterForm = new FormGroup({
     searchFilter: new FormControl(''),
     dateFilter: new FormControl(true),
-
     providerFilter: new FormControl([]),
-    'microsoft azure': new FormControl(false),
-    'amazon aws': new FormControl(false),
-
+    profileFilter: new FormControl([]),
     tags: new FormControl([])
   });
 
-  providers: {name: string; value: boolean}[] = [
-    { name: 'Amazon AWS', value: false },
-    { name: 'Microsoft Azure', value: false }
-  ];
+  providers: {name: string; value: boolean}[];
+  profiles: {id: string; name: string; value: boolean}[];
 
   filterExtended: boolean;
   compactMode: boolean;
@@ -51,7 +43,17 @@ export class CommandBarComponent implements OnInit {
   constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService) {
     this.filterExtended = false;
     this.compactMode = false;
+
     globalFilteredSessions.next(this.workspaceService.sessions);
+
+    this.providers = [
+      { name: 'Amazon AWS', value: false },
+      { name: 'Microsoft Azure', value: false }
+    ];
+
+    this.profiles = this.workspaceService.getProfiles().map(element => {
+      return { name: element.name, id: element.id, value: false };
+    });
   }
 
   ngOnInit(): void {
@@ -93,7 +95,5 @@ export class CommandBarComponent implements OnInit {
     this.filterForm.get('dateFilter').setValue(!this.filterForm.get('dateFilter').value);
   }
 
-  providerChange() {
-    this.filterForm.get('providerFilter').setValue(this.providers);
-  }
+
 }

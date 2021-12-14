@@ -116,6 +116,10 @@ form button, .btn-control {
   }
 }
 
+.toggle-button {
+  margin-right: 10px;
+}
+
 .mat-checkbox-layout {
   width: auto!important;
 }
@@ -124,7 +128,7 @@ form button, .btn-control {
 .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background: $silver-dark;
+  background: $black;
 }
 
 .mat-menu-panel {

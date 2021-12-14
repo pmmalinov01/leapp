@@ -23,20 +23,8 @@
       <input formControlName="dateFilter" type="checkbox" class="hidden" />
       <button class="toggle-button {{filterForm.get('dateFilter').value ? 'toggled' : ''}}" (click)="toggleDateFilter();"><i class="fal fa-exchange fa-rotate-90"></i> Order by date</button>
 
-      <button class="toggle-button" [matMenuTriggerFor]="providerMenu"><i class="fal fa-cloud"></i> Provider</button>
-      <mat-menu #providerMenu="matMenu">
-        <div class="filter-menu" (click)="$event.preventDefault(); $event.stopPropagation();">
-          <ng-container *ngFor="let provider of providers">
-            <mat-checkbox (click)="$event.stopPropagation();" (change)="provider.value = $event.checked; providerChange();"></mat-checkbox> {{provider.name}}
-            <br>
-          </ng-container>
-        </div>
-        <hr (click)="$event.preventDefault(); $event.stopPropagation();">
-        <div class="menu-buttons" (click)="$event.preventDefault(); $event.stopPropagation();">
-          <button class="btn-control">Apply</button>
-          <a (click)="trigger.closeMenu();">Cancel</a>
-        </div>
-      </mat-menu>
+      <app-filter-menu [control]="'providerFilter'" [data]="providers" [icon]="'fal fa-cloud'" [name]="'Providers'" [form]="filterForm"></app-filter-menu>
+      <app-filter-menu [control]="'profileFilter'" [data]="profiles" [icon]="'fal fa-user-circle'" [name]="'Profile'" [form]="filterForm" [searchable]="true"></app-filter-menu>
 
     </div>
 
