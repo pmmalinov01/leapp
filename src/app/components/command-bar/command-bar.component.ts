@@ -3,13 +3,14 @@ import {BsModalService} from 'ngx-bootstrap/modal';
 import {OptionsDialogComponent} from '../dialogs/options-dialog/options-dialog.component';
 import {CreateDialogComponent} from '../dialogs/create-dialog/create-dialog.component';
 import {EditDialogComponent} from '../dialogs/edit-dialog/edit-dialog.component';
+import {SegmentDialogComponent} from '../dialogs/segment-dialog/segment-dialog.component';
 import {WorkspaceService} from '../../services/workspace.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 import {Session} from '../../models/session';
-import {AppService} from "../../services/app.service";
+import {AppService} from '../../services/app.service';
 
-interface GlobalFilters {
+export interface GlobalFilters {
   searchFilter: string;
   dateFilter: boolean;
   providerFilter: {name: string; value: boolean}[];
@@ -22,6 +23,7 @@ interface GlobalFilters {
 
 export const globalFilteredSessions = new BehaviorSubject<Session[]>([]);
 export const compactMode = new BehaviorSubject<boolean>(false);
+export const globalFilterGroup = new BehaviorSubject<GlobalFilters>(null);
 
 @Component({
   selector: 'app-command-bar',
@@ -81,6 +83,8 @@ export class CommandBarComponent implements OnInit {
   ngOnInit(): void {
 
     this.filterForm.valueChanges.subscribe((values: GlobalFilters) => {
+      globalFilterGroup.next(values);
+
       console.log(values);
 
       if(values.searchFilter === '') {
@@ -117,5 +121,7 @@ export class CommandBarComponent implements OnInit {
     this.filterForm.get('dateFilter').setValue(!this.filterForm.get('dateFilter').value);
   }
 
-
+  openSaveSegmentDialog() {
+    this.bsModalService.show(SegmentDialogComponent, { animated: false, class: 'segment-modal'});
+  }
 }

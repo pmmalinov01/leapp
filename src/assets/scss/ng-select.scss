@@ -24,3 +24,17 @@
 }
 
 .ng-select .ng-clear-wrapper { display: none; }
+
+.ng-select .ng-option.ng-option-selected,
+.ng-select .ng-option.ng-option-marked,
+.ng-select .ng-option.ng-option-selected.ng-option-marked {
+  background-color: #fff!important;
+  .ng-option-label {
+    background: $silver-25;
+  }
+}
+.ng-select .ng-option-label {
+  padding: 5px 10px;
+  border-radius: $border-radius;
+  display: block;
+}

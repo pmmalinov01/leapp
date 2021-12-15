@@ -1,4 +1,6 @@
+import {GlobalFilters} from '../components/command-bar/command-bar.component';
+
 export default interface Segment {
   name: string;
-  filters: { key: string; value: string }[];
+  filterGroup: GlobalFilters;
 }

@@ -35,6 +35,9 @@ html, body { height: 100%; }
   .mat-menu-panel {
     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
   }
+  .ng-dropdown-footer {
+    border-top: none!important;
+  }
 }
 
 
@@ -323,5 +326,20 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
 .compact {
   .search-bar {
     width: 200px!important;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: $text-color;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.6;
   }
 }

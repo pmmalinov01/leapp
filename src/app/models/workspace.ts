@@ -34,6 +34,8 @@ export class Workspace {
   constructor() {
     this._pinned = [];
     this._sessions = [];
+    this._folders = [];
+    this._segments = [];
     this._defaultRegion = environment.defaultRegion;
     this._defaultLocation = environment.defaultLocation;
     this._idpUrls = [];

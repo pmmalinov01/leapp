@@ -27,10 +27,10 @@ export class SideBarComponent implements OnInit {
     ];
 
     this.segments = [
-      { name: 'Region Based', filters: [] },
-      { name: 'Architecture', filters: [] },
-      { name: 'Commons', filters: [] },
-      { name: 'Testing', filters: [] }
+      { name: 'Region Based', filterGroup: null },
+      { name: 'Architecture', filterGroup: null },
+      { name: 'Commons', filterGroup: null },
+      { name: 'Testing', filterGroup: null }
     ];
   }
 
