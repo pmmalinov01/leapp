@@ -13,6 +13,8 @@ $search-bar-width: 400px;
 $standard-padding: 20px;
 $modal-padding: 20px;
 
+$left-compacted-sidebar: 130px;
+
 $form-button-padding: 10px 20px;
 $toggle-button-padding: 5px 10px;
 $padding-form-control: 5px 10px;
@@ -321,11 +323,18 @@ hr { margin: 10px 0; display: block; height: 1px; border-top: 1px solid $silver-
   align-items: center;
 }
 
-.compact { .left { width: 130px!important; border-bottom: 1px solid $silver-75; } }
-.compact { .right { width: calc(100% - 130px)!important; } }
+.compact { .left { width: $left-compacted-sidebar!important; border-bottom: 1px solid $silver-75; } }
+.compact { .right { width: calc(100% - #{$left-compacted-sidebar})!important; } }
 .compact {
   .search-bar {
     width: 200px!important;
+  }
+
+  .extended {
+    .tag-filters {
+      margin-left: -$left-compacted-sidebar;
+      padding: 10px!important;
+    }
   }
 }
 

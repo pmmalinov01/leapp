@@ -28,7 +28,7 @@
       <app-filter-menu [control]="'regionFilter'" [data]="regions" [icon]="'fal fa-globe'" [name]="'Region'" [form]="filterForm" [searchable]="true"></app-filter-menu>
       <app-filter-menu [control]="'typeFilter'" [data]="types" [icon]="'fal fa-bookmark'" [name]="'Type'" [form]="filterForm" [categories]="['Amazon AWS', 'Microsoft Azure']"></app-filter-menu>
 
-      <a (click)="openSaveSegmentDialog();">Save Segment</a>
+      <a (click)="openSaveSegmentDialog();">Save{{compactMode ? '': ' Segments'}}</a>
 
     </div>
 

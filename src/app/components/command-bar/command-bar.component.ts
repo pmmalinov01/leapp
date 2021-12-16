@@ -83,9 +83,6 @@ export class CommandBarComponent implements OnInit, OnDestroy {
 
     this.subscription = this.filterForm.valueChanges.subscribe((values: GlobalFilters) => {
       globalFilterGroup.next(values);
-
-      console.log(values);
-
       if(values.searchFilter === '') {
         return globalFilteredSessions.next(this.workspaceService.sessions);
       } else {

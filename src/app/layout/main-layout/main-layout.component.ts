@@ -19,9 +19,11 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
       if (value) {
         this.electronService.currentWindow.setMinimumSize(560, 680);
         this.electronService.currentWindow.setSize(560, 680);
+        this.electronService.currentWindow.resizable = false;
       } else {
         this.electronService.currentWindow.setMinimumSize(1200, 680);
         this.electronService.currentWindow.setSize(1200, 680);
+        this.electronService.currentWindow.resizable = true;
       }
     });
   }
