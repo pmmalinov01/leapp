@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {OptionsDialogComponent} from '../dialogs/options-dialog/options-dialog.component';
 import {CreateDialogComponent} from '../dialogs/create-dialog/create-dialog.component';
@@ -18,19 +18,19 @@ export interface GlobalFilters {
   regionFilter: {name: string; value: boolean}[];
   integrationFilter: {name: string; value: boolean}[];
   typeFilter: {category: string; name: string; value: boolean}[];
-  tags: string[];
 }
 
 export const globalFilteredSessions = new BehaviorSubject<Session[]>([]);
 export const compactMode = new BehaviorSubject<boolean>(false);
 export const globalFilterGroup = new BehaviorSubject<GlobalFilters>(null);
+export const globalHasFilter = new BehaviorSubject<boolean>(false);
 
 @Component({
   selector: 'app-command-bar',
   templateUrl: './command-bar.component.html',
   styleUrls: ['./command-bar.component.scss']
 })
-export class CommandBarComponent implements OnInit {
+export class CommandBarComponent implements OnInit, OnDestroy {
 
   filterForm = new FormGroup({
     searchFilter: new FormControl(''),
@@ -39,8 +39,7 @@ export class CommandBarComponent implements OnInit {
     profileFilter: new FormControl([]),
     regionFilter: new FormControl([]),
     integrationFilter: new FormControl([]),
-    typeFilter: new FormControl([]),
-    tags: new FormControl([])
+    typeFilter: new FormControl([])
   });
 
   providers: {name: string; value: boolean}[];
@@ -52,7 +51,7 @@ export class CommandBarComponent implements OnInit {
   filterExtended: boolean;
   compactMode: boolean;
 
-
+  private subscription;
 
   constructor(private bsModalService: BsModalService, private workspaceService: WorkspaceService, private appService: AppService) {
     this.filterExtended = false;
@@ -82,7 +81,7 @@ export class CommandBarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.filterForm.valueChanges.subscribe((values: GlobalFilters) => {
+    this.subscription = this.filterForm.valueChanges.subscribe((values: GlobalFilters) => {
       globalFilterGroup.next(values);
 
       console.log(values);
@@ -94,6 +93,10 @@ export class CommandBarComponent implements OnInit {
       }
     });
 
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   showOptionDialog() {
@@ -115,6 +118,7 @@ export class CommandBarComponent implements OnInit {
 
   toggleFilters() {
     this.filterExtended = !this.filterExtended;
+    globalHasFilter.next(this.filterExtended);
   }
 
   toggleDateFilter() {

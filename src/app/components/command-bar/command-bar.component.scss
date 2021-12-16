@@ -20,6 +20,7 @@
     display: block;
     height: 1px;
     border-top: 1px solid $silver-75;
+    overflow: hidden;
   }
 
   &.extended {
@@ -29,6 +30,7 @@
 
     .tag-filters {
       padding: 15px $standard-padding;
+      height: auto;
     }
   }
 

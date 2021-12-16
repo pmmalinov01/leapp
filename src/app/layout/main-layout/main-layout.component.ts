@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {compactMode} from '../../components/command-bar/command-bar.component';
 import {ElectronService} from '../../services/electron.service';
 
@@ -7,12 +7,14 @@ import {ElectronService} from '../../services/electron.service';
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent implements OnInit, OnDestroy {
 
   _compactMode: boolean;
 
+  private subscription;
+
   constructor(private electronService: ElectronService) {
-    compactMode.subscribe(value => {
+    this.subscription = compactMode.subscribe(value => {
       this._compactMode = value;
       if (value) {
         this.electronService.currentWindow.setMinimumSize(560, 680);
@@ -24,7 +26,9 @@ export class MainLayoutComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

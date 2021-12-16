@@ -1,4 +1,5 @@
 @import "../../../assets/scss/mixins/palette";
+@import "../../../assets/scss/global";
 
 .vertical-rule {
   display: inline-block;
@@ -10,4 +11,19 @@
 
 tr.active {
   background: aquamarine;
+}
+
+.centered {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -14%;
+
+  &.corrected {
+    margin-top: calc(-14% - #{$commandbar-extended-height} + 60px);
+  }
+
+  img { height: 210px; }
+  span { display: block; margin-top: 10px; font-size: 18px; color: $text-color; }
 }

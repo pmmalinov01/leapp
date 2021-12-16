@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AppService} from '../../../services/app.service';
 import {LoggingService} from '../../../services/logging.service';
 import {WorkspaceService} from '../../../services/workspace.service';
@@ -12,7 +12,7 @@ import {NgSelectComponent} from '@ng-select/ng-select';
   templateUrl: './segment-dialog.component.html',
   styleUrls: ['./segment-dialog.component.scss']
 })
-export class SegmentDialogComponent implements OnInit {
+export class SegmentDialogComponent implements OnInit, OnDestroy {
 
   @ViewChild('ngSelectComponent')
   ngSelectComponent: NgSelectComponent;
@@ -27,6 +27,8 @@ export class SegmentDialogComponent implements OnInit {
   currentFilterGroup;
   temporaryName;
 
+  private subscription;
+
   constructor(
     private appService: AppService,
     private loggingService: LoggingService,
@@ -34,10 +36,14 @@ export class SegmentDialogComponent implements OnInit {
   ) {
     this.temporaryName = '';
     this.segments = workspaceService.getSegments();
-    globalFilterGroup.subscribe(value => this.currentFilterGroup = value);
+    this.subscription = globalFilterGroup.subscribe(value => this.currentFilterGroup = value);
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   addNewSegment(): void {
     const newSegment = { name: this.temporaryName, filterGroup: this.currentFilterGroup };
